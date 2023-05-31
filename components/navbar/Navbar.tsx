@@ -3,6 +3,7 @@ import { Box, Flex, Image } from "@chakra-ui/react";
 import logo from '../../public/logo.svg'
 import Profile from "./Profile";
 import SearchBox from "./SearchInput";
+import Logo from '../Logo';
 
 const Navbar = () => {
 
@@ -19,7 +20,8 @@ const Navbar = () => {
     >
       {/* Logo */}
       <Box width="100px" height="30px">
-        <Image src={imageUrl} alt="grocery logo" objectFit="contain" />
+        {/* <Image src={imageUrl} alt="grocery logo" objectFit="contain" /> */}
+        <Logo />
       </Box>
 
       {/* Search Box */}

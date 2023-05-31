@@ -39,7 +39,15 @@ const SearchBox = () => {
             marginRight="-17px"
             borderRightRadius="6px"
           >
-            <Button bg='#37B063' textColor='white' size='lg' width='105px' borderLeft='none' borderRight='20px'>
+            <Button
+              bg="#37B063"
+              textColor="white"
+              size="lg"
+              width="105px"
+              borderLeft="none"
+              borderRight="20px"
+              _hover={{ bg: "#37B063" }}
+            >
               <SearchIcon marginX={2} />
               Search
             </Button>
