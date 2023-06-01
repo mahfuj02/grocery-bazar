@@ -15,7 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Heading>Hello from Index.</Heading>
+        <Heading textColor='secondary'>Hello from Index.</Heading>
       </main>
     </>
   )

@@ -16,7 +16,7 @@ const CustomMenuItem = ({ icon, text, handleGoogleLogin }: Props) => {
             <Box fontSize={20} mr={2}>
               {icon}
             </Box>
-            <Text fontWeight={600} _hover={{ textColor: "#37B063" }}>
+            <Text fontWeight={600} _hover={{ textColor: "secondary" }}>
               {text}
             </Text>
           </Flex>
@@ -27,7 +27,7 @@ const CustomMenuItem = ({ icon, text, handleGoogleLogin }: Props) => {
             <Box fontSize={20} mr={2}>
               {icon}
             </Box>
-            <Text fontWeight={600} _hover={{ textColor: "#37B063" }}>
+            <Text fontWeight={600} _hover={{ textColor: "secondary" }}>
               {text}
             </Text>
           </Flex>

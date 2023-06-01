@@ -27,7 +27,7 @@ const LoginModal = ({ isOpen, onClose, handleGoogleLogin }: Props) => {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent alignItems="center">
-        <ModalHeader textColor="#37B063" fontWeight={600}>
+        <ModalHeader textColor="secondary" fontWeight={600}>
           Welcome to Grocery Bazar
         </ModalHeader>
         <ModalCloseButton />

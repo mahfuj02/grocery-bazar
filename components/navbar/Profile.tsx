@@ -35,9 +35,9 @@ const Profile = () => {
     return (
       <>
         <Button
-          bg="#37B063"
+          bg="secondary"
           textColor="#fff"
-          _hover={{ bg: "#37B063", opacity: "90%" }}
+          _hover={{ bg: "secondary", opacity: "90%" }}
           onClick={onOpen}
         >
           Join

@@ -15,7 +15,7 @@ const SearchBox = () => {
         <InputLeftAddon bg="background" border="none">
           <Box
             backgroundColor="#F7F7F7"
-            textColor="#37B063"
+            textColor="secondary"
             fontSize="14px"
             fontWeight="700"
             lineHeight="38px"
@@ -34,19 +34,19 @@ const SearchBox = () => {
         />
         <InputRightAddon bg="background" border="none">
           <Box
-            backgroundColor="#37B063"
+            backgroundColor="secondary"
             textColor="#ffff"
             marginRight="-17px"
             borderRightRadius="6px"
           >
             <Button
-              bg="#37B063"
+              bg="secondary"
               textColor="white"
               size="lg"
               width="105px"
               borderLeft="none"
               borderRight="20px"
-              _hover={{ bg: "#37B063" }}
+              _hover={{ bg: "secondary" }}
             >
               <SearchIcon marginX={2} />
               Search
