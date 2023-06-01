@@ -13,17 +13,16 @@ import {
 import { Google } from "@mui/icons-material";
 
 import Logo from "./Logo";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { GoogleIcon } from "@/providers/ProviderIcons";
 
 interface Props {
   isOpen: boolean;
-  setLogin: Dispatch<SetStateAction<boolean>>;
-  login: boolean;
+  handleGoogleLogin: () => void;
   onClose: () => void;
 }
 
-const LoginModal = ({ isOpen, onClose, setLogin, login }: Props) => {
+const LoginModal = ({ isOpen, onClose, handleGoogleLogin }: Props) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -42,7 +41,7 @@ const LoginModal = ({ isOpen, onClose, setLogin, login }: Props) => {
             border="2px solid #37B063"
             bg="background"
             _hover={{ bg: "background", opacity: "90%" }}
-            onClick={() => setLogin(false)}
+            onClick={handleGoogleLogin}
           >
             <Box paddingLeft={2} paddingRight={3}>
               <GoogleIcon />
