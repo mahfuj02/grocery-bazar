@@ -13,17 +13,21 @@ import {
 import { Google } from "@mui/icons-material";
 
 import Logo from "./Logo";
+import { Dispatch, SetStateAction } from "react";
+import { GoogleIcon } from "@/providers/ProviderIcons";
 
 interface Props {
   isOpen: boolean;
+  setLogin: Dispatch<SetStateAction<boolean>>;
+  login: boolean;
   onClose: () => void;
 }
 
-const LoginModal = ({ isOpen, onClose }: Props) => {
+const LoginModal = ({ isOpen, onClose, setLogin, login }: Props) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent alignItems="center" >
+      <ModalContent alignItems="center">
         <ModalHeader textColor="#37B063" fontWeight={600}>
           Welcome to Grocery Bazar
         </ModalHeader>
@@ -38,9 +42,10 @@ const LoginModal = ({ isOpen, onClose }: Props) => {
             border="2px solid #37B063"
             bg="background"
             _hover={{ bg: "background", opacity: "90%" }}
+            onClick={() => setLogin(false)}
           >
             <Box paddingLeft={2} paddingRight={3}>
-              <Google />
+              <GoogleIcon />
             </Box>
             Sign in with Google
           </Button>
