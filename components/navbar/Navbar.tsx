@@ -3,6 +3,7 @@ import { Box, Flex, Show, Text } from "@chakra-ui/react";
 import Logo from "../Logo";
 import Profile from "./Profile";
 import SearchBox from "./SearchInput";
+import Sidebar from "../Sidebar";
 
 const Navbar = () => {
   return (
@@ -15,13 +16,16 @@ const Navbar = () => {
         paddingX={50}
         boxShadow="0px 0px 4px rgba(0, 0, 0, 0.1)"
       >
+        {/* Toggle Category List */}
+        <Show below="lg" ><Sidebar /> </Show>
+
         {/* Logo */}
         <Box width="100px" height="30px">
           <Logo />
         </Box>
 
         {/* Search Box */}
-        <Show above="lg">
+        <Show breakpoint="(min-width: 993px)">
           <SearchBox />
         </Show>
         {/* Login Button */}

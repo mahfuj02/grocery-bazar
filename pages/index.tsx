@@ -1,3 +1,5 @@
+
+import Sidebar from "@/components/Sidebar";
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import { Inter } from "next/font/google";
 import Head from "next/head";
@@ -17,10 +19,9 @@ export default function Home() {
         templateAreas={{ base: `"main"`, lg: `"aside main"` }}
         templateColumns={{ base: "1fr", lg: "250px 1fr" }}
       >
-        <Show above="lg">
-          <GridItem area="aside" bg={"green"}>
-            {" "}
-            hello from sidevar
+        <Show breakpoint="(min-width: 993px)">
+          <GridItem area="aside" >
+            <Sidebar />
           </GridItem>
         </Show>
 

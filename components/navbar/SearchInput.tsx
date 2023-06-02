@@ -17,7 +17,7 @@ const SearchBox = () => {
           <Show below="lg">
             <SearchIcon />
           </Show>
-          <Show above="lg">
+          <Show breakpoint="(min-width: 993px)">
             <Box
               backgroundColor="#F7F7F7"
               textColor="secondary"
@@ -45,7 +45,7 @@ const SearchBox = () => {
             marginRight="-17px"
             borderRightRadius="6px"
           >
-            <Show above="lg">
+            <Show breakpoint="(min-width: 993px)">
               <Button
                 bg="secondary"
                 textColor="white"
