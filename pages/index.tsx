@@ -1,9 +1,8 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import { Heading } from '@chakra-ui/react'
+import { Heading } from "@chakra-ui/react";
+import { Inter } from "next/font/google";
+import Head from "next/head";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
@@ -15,8 +14,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Heading textColor='secondary'>Hello from Index.</Heading>
+        <Heading textColor="secondary">Hello from Index.</Heading>
       </main>
     </>
-  )
+  );
 }
