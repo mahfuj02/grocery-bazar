@@ -1,4 +1,4 @@
-import { Heading } from "@chakra-ui/react";
+import { Grid, GridItem, Show } from "@chakra-ui/react";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 
@@ -13,9 +13,21 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <Heading textColor="secondary">Hello from Index.</Heading>
-      </main>
+      <Grid
+        templateAreas={{ base: `"main"`, lg: `"aside main"` }}
+        templateColumns={{ base: "1fr", lg: "250px 1fr" }}
+      >
+        <Show above="lg">
+          <GridItem area="aside" bg={"green"}>
+            {" "}
+            hello from sidevar
+          </GridItem>
+        </Show>
+
+        <GridItem area="main" bg={"red"}>
+          hello from main area
+        </GridItem>
+      </Grid>
     </>
   );
 }
