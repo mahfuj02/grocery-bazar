@@ -3,7 +3,7 @@ import Carousel from "@/components/home/HomeSlider";
 import ProductCard from "@/components/products/ProductCard";
 import ProductList from "@/components/products/ProductList";
 // import ExampleComponent from "@/components/home/HomeBanner";
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Show } from "@chakra-ui/react";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 
@@ -31,14 +31,15 @@ export default function Home() {
               <Sidebar />
             </GridItem>
           </Show>
-
+          <Box bg={'mainPageBG'} >
           <GridItem area="carousel" marginTop={5} alignItems='center '>
             <Carousel />
           </GridItem>
-          <GridItem area="main">
+          <GridItem area="main" margin={5}>
             {/* <ProductList /> */}
             <ProductCard />
           </GridItem>
+          </Box>
         </Grid>
       </main>
     </>

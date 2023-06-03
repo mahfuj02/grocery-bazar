@@ -12,22 +12,24 @@ const ProductCard = () => {
 
   return (
     <SimpleGrid columns={{ base: 2, lg: 3 }} spacing={4}>
-      <Box padding={2} maxW="sm" borderRadius="md" overflow="hidden">
+      <Box bg="white" padding={2} maxW="sm" borderRadius="md" overflow="hidden">
         <Image src={data.image} alt={data.title} objectFit="cover" h={200} />
         <Box p={4}>
-        <Text
-          fontWeight="bold"
-          textAlign="center"
-          mb={2}
-          whiteSpace="nowrap"
-          overflow="hidden"
-          textOverflow="ellipsis"
-        >
-          {data.title}
-        </Text>
+          <Text
+            fontWeight="bold"
+            textAlign="center"
+            mb={2}
+            whiteSpace="nowrap"
+            overflow="hidden"
+            textOverflow="ellipsis"
+          >
+            {data.title}
+          </Text>
           <Box display="flex" justifyContent="space-between">
             <Text>{data.weight}</Text>
-            <Text fontWeight="bold">₹{data.price}</Text>
+            <Text fontWeight="bold">
+              tk.{data.price}
+            </Text>
           </Box>
         </Box>
         <Box px={4} pb={4}>
@@ -41,94 +43,6 @@ const ProductCard = () => {
           </Button>
         </Box>
       </Box>
-      <Box padding={2} maxW="sm" borderRadius="md" overflow="hidden">
-        <Image src={data.image} alt={data.title} objectFit="cover" h={200} />
-        <Box p={4}>
-        <Text
-          fontWeight="bold"
-          textAlign="center"
-          mb={2}
-          whiteSpace="nowrap"
-          overflow="hidden"
-          textOverflow="ellipsis"
-        >
-          {data.title}
-        </Text>
-          <Box display="flex" justifyContent="space-between">
-            <Text>{data.weight}</Text>
-            <Text fontWeight="bold">₹{data.price}</Text>
-          </Box>
-        </Box>
-        <Box px={4} pb={4}>
-          <Button
-            colorScheme="green"
-            variant="outline"
-            leftIcon={<AddIcon />}
-            width="100%"
-          >
-            Add to Cart
-          </Button>
-        </Box>
-      </Box>
-      <Box padding={2} maxW="sm" borderRadius="md" overflow="hidden">
-        <Image src={data.image} alt={data.title} objectFit="cover" h={200} />
-        <Box p={4}>
-        <Text
-          fontWeight="bold"
-          textAlign="center"
-          mb={2}
-          whiteSpace="nowrap"
-          overflow="hidden"
-          textOverflow="ellipsis"
-        >
-          {data.title}
-        </Text>
-          <Box display="flex" justifyContent="space-between">
-            <Text>{data.weight}</Text>
-            <Text fontWeight="bold">₹{data.price}</Text>
-          </Box>
-        </Box>
-        <Box px={4} pb={4}>
-          <Button
-            colorScheme="green"
-            variant="outline"
-            leftIcon={<AddIcon />}
-            width="100%"
-          >
-            Add to Cart
-          </Button>
-        </Box>
-      </Box>
-      <Box padding={2} maxW="sm" borderRadius="md" overflow="hidden">
-        <Image src={data.image} alt={data.title} objectFit="cover" h={200} />
-        <Box p={4}>
-        <Text
-          fontWeight="bold"
-          textAlign="center"
-          mb={2}
-          whiteSpace="nowrap"
-          overflow="hidden"
-          textOverflow="ellipsis"
-        >
-          {data.title}
-        </Text>
-          <Box display="flex" justifyContent="space-between">
-            <Text>{data.weight}</Text>
-            <Text fontWeight="bold">₹{data.price}</Text>
-          </Box>
-        </Box>
-        <Box px={4} pb={4}>
-          <Button
-            colorScheme="green"
-            variant="outline"
-            leftIcon={<AddIcon />}
-            width="100%"
-          >
-            Add to Cart
-          </Button>
-        </Box>
-      </Box>
-      
     </SimpleGrid>
   );
 };

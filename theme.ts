@@ -9,6 +9,7 @@ const theme = extendTheme({
   config,
   colors: {
     secondary: "#37B063",
+    mainPageBG: '#F7F7F7'
   },
 });
 
