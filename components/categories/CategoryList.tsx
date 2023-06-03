@@ -108,7 +108,10 @@ const CategoryList: React.FC = () => {
       image: <Image src={groceryUrl} alt="grocery" />,
       children: [
         { title: "Diapers", image: <Image src={groceryUrl} alt="grocery" /> },
-        { title: "Baby Food", image: <Image src={babyCareUrl} alt="grocery" /> },
+        {
+          title: "Baby Food",
+          image: <Image src={babyCareUrl} alt="grocery" />,
+        },
         {
           title: "Baby Toiletries",
           image: <Image src={babyCareUrl} alt="grocery" />,
