@@ -1,5 +1,6 @@
-
 import Sidebar from "@/components/Sidebar";
+import Carousel from "@/components/home/HomeSlider";
+// import ExampleComponent from "@/components/home/HomeBanner";
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import { Inter } from "next/font/google";
 import Head from "next/head";
@@ -15,20 +16,29 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Grid
-        templateAreas={{ base: `"main"`, lg: `"aside main"` }}
-        templateColumns={{ base: "1fr", lg: "250px 1fr" }}
-      >
-        <Show breakpoint="(min-width: 993px)">
-          <GridItem area="aside" >
-            <Sidebar />
-          </GridItem>
-        </Show>
+      <main>
+        <Grid
+          templateAreas={{
+            base: `"carousel" "main"`,
+            lg: `"aside carousel" "aside main"`,
+          }}
+          templateColumns={{ base: "100%", lg: "1fr  75%" }}
+        >
+          <Show breakpoint="(min-width: 993px)">
+            <GridItem area="aside">
+              <Sidebar />
+            </GridItem>
+          </Show>
 
-        <GridItem area="main" marginLeft={5} marginTop={5}>
-          hello from main area
-        </GridItem>
-      </Grid>
+          <GridItem area="carousel" marginTop={5} alignItems='center '>
+            <Carousel />
+          </GridItem>
+          <GridItem area="main">
+            
+
+          </GridItem>
+        </Grid>
+      </main>
     </>
   );
 }
