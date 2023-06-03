@@ -25,7 +25,7 @@ export default function Home() {
           </GridItem>
         </Show>
 
-        <GridItem area="main" bg={"red"}>
+        <GridItem area="main" marginLeft={5} marginTop={5}>
           hello from main area
         </GridItem>
       </Grid>

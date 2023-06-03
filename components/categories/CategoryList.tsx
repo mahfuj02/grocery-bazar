@@ -1,11 +1,12 @@
-
-import { ChevronRightIcon, HamburgerIcon } from '@chakra-ui/icons';
-import { Box, Button, Flex, Icon } from '@chakra-ui/react';
-import { useState } from 'react';
+import { ChevronRightIcon } from "@chakra-ui/icons";
+import { Box, Button, Flex, Icon, Image } from "@chakra-ui/react";
+import { useState } from "react";
+import baby_care from "../../public/Baby_Care_aYWku2D.webp";
+import grocery from "../../public/Grocery_yO9ZydW.webp";
 
 interface Category {
   title: string;
-  icon: React.ReactNode;
+  image: React.ReactNode;
   children?: Category[];
 }
 
@@ -14,13 +15,13 @@ interface SidebarItemProps {
   level: number;
 }
 
-const SidebarItem = ({ category, level }:SidebarItemProps) => {
+const SidebarItem = ({ category, level }: SidebarItemProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
   };
 
-  const marginLeft = `${level * 20}px`; // Adjust the indentation level as per your needs
+  const marginLeft = `${level * 10}px`; // Adjust the indentation level as per your needs
 
   return (
     <Box>
@@ -32,16 +33,27 @@ const SidebarItem = ({ category, level }:SidebarItemProps) => {
         display="flex"
         alignItems="center"
         onClick={handleToggle}
+        textColor="black"
+        marginY={3}
+        fontWeight={500}
+        fontSize="15px"
+        _hover={{
+          textColor: "secondary",
+          fontWeight: "500",
+          fontSize: "15px",
+        }}
       >
-        <Box mr={2} ml={level > 0 ? '30px' : 0}>{category.icon}</Box>
+        <Box mr={2} ml={level > 0 ? marginLeft : 0} width="20px">
+          {category.image}
+        </Box>
         <Flex align="center" flex="1">
           {category.title}
         </Flex>
         {category.children && (
           <Icon
             as={ChevronRightIcon}
-            boxSize={4}
-            transform={isExpanded ? 'rotate(90deg)' : undefined}
+            boxSize="20px"
+            transform={isExpanded ? "rotate(90deg)" : undefined}
             transition="transform 0.2s ease-in-out"
           />
         )}
@@ -58,47 +70,60 @@ const SidebarItem = ({ category, level }:SidebarItemProps) => {
 };
 
 const CategoryList: React.FC = () => {
+  const groceryUrl = grocery.src;
+  const babyCareUrl = baby_care.src;
   const categories: Category[] = [
     {
-      title: 'Grocery',
-      icon: <HamburgerIcon />,
+      title: "Grocery",
+      image: <Image src={groceryUrl} alt="grocery" />,
       children: [
-        { title: 'Fruits', icon: <HamburgerIcon /> },
-        { title: 'Vegetables', icon: <HamburgerIcon /> },
-        { title: 'Cereals', icon: <HamburgerIcon /> },
+        { title: "Fruits", image: <Image src={babyCareUrl} alt="grocery" /> },
+        {
+          title: "Vegetables",
+          image: <Image src={groceryUrl} alt="grocery" />,
+        },
+        {
+          title: "Cereals",
+          image: <Image src={babyCareUrl} alt="grocery" />,
+          children: [
+            {
+              title: "Vegetables",
+              image: <Image src={groceryUrl} alt="grocery" />,
+            },
+          ],
+        },
       ],
     },
     {
-      title: 'Meat and Fish',
-      icon: <HamburgerIcon />,
+      title: "Meat and Fish",
+      image: <Image src={babyCareUrl} alt="grocery" />,
       children: [
-        { title: 'Mutton', icon: <HamburgerIcon /> },
-        { title: 'Chicken', icon: <HamburgerIcon /> },
-        { title: 'Beef', icon: <HamburgerIcon /> },
+        { title: "Mutton", image: <Image src={groceryUrl} alt="grocery" /> },
+        { title: "Chicken", image: <Image src={babyCareUrl} alt="grocery" /> },
+        { title: "Beef", image: <Image src={groceryUrl} alt="grocery" /> },
       ],
     },
     {
-      title: 'Baby Care',
-      icon: <HamburgerIcon />,
+      title: "Baby Care",
+      image: <Image src={groceryUrl} alt="grocery" />,
       children: [
-        { title: 'Diapers', icon: <HamburgerIcon /> },
-        { title: 'Baby Food', icon: <HamburgerIcon /> },
-        { title: 'Baby Toiletries', icon: <HamburgerIcon /> },
+        { title: "Diapers", image: <Image src={groceryUrl} alt="grocery" /> },
+        { title: "Baby Food", image: <Image src={babyCareUrl} alt="grocery" /> },
+        {
+          title: "Baby Toiletries",
+          image: <Image src={babyCareUrl} alt="grocery" />,
+        },
       ],
     },
-    
   ];
 
   return (
-      <>
-        {categories.map((category) => (
-          <SidebarItem key={category.title} category={category} level={0} />
-        ))}
-      </>
+    <Box marginTop={5} marginLeft={5}>
+      {categories.map((category) => (
+        <SidebarItem key={category.title} category={category} level={0} />
+      ))}
+    </Box>
   );
-
 };
 
 export default CategoryList;
-
-
