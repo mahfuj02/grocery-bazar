@@ -2,8 +2,7 @@ import Sidebar from "@/components/Sidebar";
 import Carousel from "@/components/home/HomeSlider";
 import ProductCard from "@/components/products/ProductCard";
 import ProductList from "@/components/products/ProductList";
-// import ExampleComponent from "@/components/home/HomeBanner";
-import { Box, Grid, GridItem, Show } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Heading, Show } from "@chakra-ui/react";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 
@@ -37,6 +36,7 @@ export default function Home() {
           </GridItem>
           <GridItem area="main" margin={5}>
             {/* <ProductList /> */}
+            <Heading as='h6' fontSize='24px' fontWeight='700' my="10px">Popular Product</Heading>
             <ProductCard />
           </GridItem>
           </Box>
