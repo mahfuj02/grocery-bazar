@@ -3,6 +3,7 @@ import { AddIcon } from "@chakra-ui/icons";
 import { BiCartAdd } from "react-icons/bi";
 import { networkInterfaces } from "os";
 import { Product } from "./ProductList";
+import CartButton from "../CartButton";
 
 interface Props {
   product: Product;
@@ -41,17 +42,8 @@ const ProductCard = ({ product }: Props) => {
           </Text>
         </Box>
       </Box>
-      <Box px={4} pb={4}>
-        <Button
-          colorScheme="secondary"
-          variant="outline"
-          _hover={{ bg: "secondary", textColor: "white" }}
-          leftIcon={<BiCartAdd fontSize="20" />}
-          width="100%"
-          textColor="secondary"
-        >
-          Add to Cart
-        </Button>
+      <Box px={4} pb={4} alignContent='center' justifyContent='center'>
+        <CartButton />
       </Box>
     </Box>
   );

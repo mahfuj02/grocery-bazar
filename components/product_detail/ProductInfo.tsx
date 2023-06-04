@@ -12,6 +12,7 @@ import { useState } from "react";
 import { BiCheck } from "react-icons/bi";
 import { Product } from "../products/ProductList";
 import WeightSelector from "./WeightSelector";
+import CartButton from "../CartButton";
 
 interface Props {
   product?: Product;
@@ -44,7 +45,8 @@ const ProductInfo = ({ product }: Props) => {
 
         <WeightSelector />
 
-        <Button >Add to Cart</Button>
+        {/* <Button >Add to Cart</Button> */}
+        <CartButton />
       </Grid>
 
       <Grid templateColumns="1fr" gap={2}>
