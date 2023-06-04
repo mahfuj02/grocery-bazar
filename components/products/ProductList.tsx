@@ -2,6 +2,7 @@ import React from "react";
 import ProductCard from "./ProductCard";
 import product1 from "../../../public/Sepnil_Sanitizer_100ml.webp";
 import { SimpleGrid } from "@chakra-ui/react";
+import { Link } from "@chakra-ui/next-js";
 
 export interface Product {
   title: string;
@@ -13,7 +14,7 @@ export interface Product {
 }
 
 const ProductList = () => {
-  const products:Product[] = [
+  const products: Product[] = [
     {
       title: "ACI Suji 250gm",
       description: "100% Pure Coconut Oil",
@@ -150,11 +151,37 @@ const ProductList = () => {
         "https://shatkora.sgp1.cdn.digitaloceanspaces.com/media/products/image-removebg-preview_3.png",
     },
   ];
-
+  const convertSlug = (title:string) => {
+    const separator = "-"; // You can use any separator character
+  
+  // Remove leading/trailing spaces and convert to lowercase
+  let slug = title.trim().toLowerCase();
+  
+  // Replace spaces with separator
+  slug = slug.replace(/\s+/g, separator);
+  
+  // Remove non-alphanumeric characters (except separator)
+  slug = slug.replace(/[^a-z0-9-]/g, "");
+  
+  // Remove consecutive occurrences of separator
+  slug = slug.replace(new RegExp(`${separator}+`, "g"), separator);
+  
+  // Trim to desired length (e.g., 50 characters)
+  slug = slug.slice(0, 50);
+  
+  return slug;
+  }
+  
   return (
     <SimpleGrid columns={{ base: 2, md: 3 }} spacing={4}>
       {products.map((product, index) => (
-        <ProductCard key={index} product={product} />
+        <Link
+          key={index}
+          href={`/product/${convertSlug(product.title)}`}
+          // as={`/product/${convertSlug(product.title)}`}
+        >
+          <ProductCard product={product} />
+        </Link>
       ))}
     </SimpleGrid>
   );
