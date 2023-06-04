@@ -15,20 +15,33 @@ const CartButton = (): JSX.Element => {
     }
   };
 
+  const handleFirstCartButtonClick = (
+    event: React.MouseEvent<HTMLDivElement>
+  ) => {
+    event.preventDefault();
+    incrementQuantity();
+  };
+
+  const handleCartButtonClick = (
+    event: React.MouseEvent<HTMLDivElement>
+  ) => {
+    event.preventDefault();
+    // incrementQuantity();
+  };
+
   if (!quantity) {
     return (
       <Box
         display="flex"
-        justifyContent='center'
+        justifyContent="center"
         alignItems="center"
         border="1px solid"
         borderColor="secondary"
         width="100%"
         height="36px"
         borderRadius="md"
-        cursor='pointer'
-        onClick={incrementQuantity}
-
+        cursor="pointer"
+        onClick={handleFirstCartButtonClick}
       >
         <Box mx={2} textAlign="center" fontWeight="bold" textColor="secondary">
           Add to Cart
@@ -48,6 +61,7 @@ const CartButton = (): JSX.Element => {
       height="36px"
       borderRadius="md"
       bg={quantity ? "secondary" : "background"}
+      onClick={handleCartButtonClick}
     >
       <IconButton
         aria-label="Decrement"
