@@ -1,15 +1,29 @@
-import { useRouter } from 'next/router';
+import ImageGallery from "@/components/product_detail/ImageGallery";
+import ProductInfo from "@/components/product_detail/ProductInfo";
+import { products } from "@/components/products/ProductList";
+import { convertSlug } from "@/services/convertToSlugt";
+import { Box, SimpleGrid } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
-const ProductPage = () => {
+const ProductDetailPage = () => {
   const router = useRouter();
-  const { productSlug,  } = router.query;
-
+  const { productSlug } = router.query;
+  const product = products.find(
+    (product) => convertSlug(product.title) === productSlug
+  );
   return (
-    <div>
-      <h1>Product Page</h1>
-      <p>Product title: {productSlug}</p>
-    </div>
+    <Box
+      bg="mainPageBG"
+      height="100vh"
+      px={{ base: 20, md: 50 }}
+      py={{ base: 30, md: 10 }}
+    >
+      <SimpleGrid columns={{ base: 1, md: 2 }} gap="2px">
+        <ImageGallery image={product?.image} title={product?.title} />
+        <ProductInfo product={product} />
+      </SimpleGrid>
+    </Box>
   );
 };
 
-export default ProductPage;
+export default ProductDetailPage;

@@ -173,9 +173,11 @@ const ProductList = () => {
     <SimpleGrid columns={{ base: 2, md: 3 }} spacing={4}>
       {products.map((product, index) => (
         <Link
+          textDecoration='none'
+          _hover={{textDecoration:'none'}}
           key={index}
           href={`/product/${convertSlug(product.title)}`}
-          // as={`/product/${convertSlug(product.title)}`}
+
         >
           <ProductCard product={product} />
         </Link>
