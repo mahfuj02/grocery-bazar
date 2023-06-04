@@ -37,7 +37,7 @@ export default function Home() {
           <GridItem area="main" margin={5}>
             {/* <ProductList /> */}
             <Heading as='h6' fontSize='24px' fontWeight='700' my="10px">Popular Product</Heading>
-            <ProductCard />
+            <ProductList />
           </GridItem>
           </Box>
         </Grid>

@@ -1,6 +1,7 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 import product1 from "../../../public/Sepnil_Sanitizer_100ml.webp";
+import { SimpleGrid } from "@chakra-ui/react";
 
 export interface Product {
   title: string;
@@ -12,22 +13,24 @@ export interface Product {
 }
 
 const ProductList = () => {
-  const products = [
+  const products:Product[] = [
     {
-      title: "Parachute Oil",
+      title: "ACI Suji 250gm",
       description: "100% Pure Coconut Oil",
       weight: "500ml",
       price: 9.99,
       total: 5,
-      image: "path/to/parachute-oil.jpg",
+      image:
+        "https://shatkora.sgp1.cdn.digitaloceanspaces.com/media/products/8153003000385.webp",
     },
     {
-      title: "Beef Liver",
+      title: "Junior Children Tooth paste Orange Flavor",
       description: "Fresh and Nutritious Beef Liver",
       weight: "250g",
       price: 12.99,
       total: 10,
-      image: "path/to/beef-liver.jpg",
+      image:
+        "https://shatkora.sgp1.cdn.digitaloceanspaces.com/media/products/Product-junior.png",
     },
     {
       title: "Coconut Biscuits",
@@ -39,109 +42,121 @@ const ProductList = () => {
     },
     // Add more products here...
     {
-      title: "Product 4",
+      title: "Special Chana 1no 1kg",
       description: "Lorem ipsum dolor sit amet.",
       weight: "500g",
       price: 9.99,
       total: 3,
-      image: "path/to/product4-image.jpg",
+      image:
+        "https://shatkora.sgp1.cdn.digitaloceanspaces.com/media/products/Special_Chana_1no_1kg.webppath/to/product4-image.jpg",
     },
     {
-      title: "Product 5",
+      title: "ACI Pure Musur Dal (No 2) 1kg",
       description: "Lorem ipsum dolor sit amet.",
       weight: "250g",
       price: 12.99,
       total: 7,
-      image: "path/to/product5-image.jpg",
+      image:
+        "https://shatkora.sgp1.cdn.digitaloceanspaces.com/media/products/Untitled_wb00Neg.png",
     },
     {
-      title: "Product 6",
+      title: "Radhuni Chotpoti Mosla 50gm",
       description: "Lorem ipsum dolor sit amet.",
       weight: "200g",
       price: 4.99,
       total: 12,
-      image: "path/to/product6-image.jpg",
+      image:
+        "https://shatkora.sgp1.cdn.digitaloceanspaces.com/media/products/8941100511053.webp",
     },
     {
-      title: "Product 7",
+      title: "Pran Halim Mix 200gm",
       description: "Lorem ipsum dolor sit amet.",
       weight: "500g",
       price: 9.99,
       total: 8,
-      image: "path/to/product7-image.jpg",
+      image:
+        "https://shatkora.sgp1.cdn.digitaloceanspaces.com/media/products/halim_mix.jpg",
     },
     {
-      title: "Product 8",
+      title: "Radhuni Kheer Mix 150gm",
       description: "Lorem ipsum dolor sit amet.",
       weight: "250g",
       price: 12.99,
       total: 2,
-      image: "path/to/product8-image.jpg",
+      image:
+        "https://shatkora.sgp1.cdn.digitaloceanspaces.com/media/products/kheer.jpg",
     },
     {
-      title: "Product 9",
+      title: "Broiler Chicken 2kg(+-100gm)",
       description: "Lorem ipsum dolor sit amet.",
       weight: "200g",
       price: 4.99,
       total: 6,
-      image: "path/to/product9-image.jpg",
+      image:
+        "https://shatkora.sgp1.cdn.digitaloceanspaces.com/media/products/Broilar_xdRF7Qg.webp",
     },
     {
-      title: "Product 10",
+      title: "Beef Liver Bengal Meat",
       description: "Lorem ipsum dolor sit amet.",
       weight: "500g",
       price: 9.99,
       total: 9,
-      image: "path/to/product10-image.jpg",
+      image:
+        "https://shatkora.sgp1.cdn.digitaloceanspaces.com/media/products/beef_liver1.jpg",
     },
     {
-      title: "Product 11",
+      title: "Beef Boneless (Net Weight ± 50 gm)",
       description: "Lorem ipsum dolor sit amet.",
       weight: "250g",
       price: 12.99,
       total: 4,
-      image: "path/to/product11-image.jpg",
+      image:
+        "https://shatkora.sgp1.cdn.digitaloceanspaces.com/media/products/Beef_Boneless_Net_Weight__50_gm.webp",
     },
     {
-      title: "Product 12",
+      title: "Pabda Small-Medium Size (20-25pcs/ half kg) +-50gm",
       description: "Lorem ipsum dolor sit amet.",
       weight: "200g",
       price: 4.99,
       total: 1,
-      image: "path/to/product12-image.jpg",
+      image:
+        "https://shatkora.sgp1.cdn.digitaloceanspaces.com/media/products/pabda-l_1.webp",
     },
     {
-      title: "Product 13",
+      title: "Rui Fish 2kg (+-100gm) 380Tk/Kg",
       description: "Lorem ipsum dolor sit amet.",
       weight: "500g",
       price: 9.99,
       total: 11,
-      image: "path/to/product13-image.jpg",
+      image:
+        "https://shatkora.sgp1.cdn.digitaloceanspaces.com/media/products/RUIS_8XCnSGO.jpg",
     },
     {
-      title: "Product 14",
+      title: "Bashundhara Pocket Tissue",
       description: "Lorem ipsum dolor sit amet.",
       weight: "250g",
       price: 12.99,
       total: 6,
-      image: "path/to/product14-image.jpg",
+      image:
+        "https://shatkora.sgp1.cdn.digitaloceanspaces.com/media/products/tissue.jpg",
     },
     {
       title: "Product 15",
-      description: "Lorem ipsum dolor sit amet.",
+      description: "Beef Shami Kebab 280gm (Bengal Meat)",
       weight: "200g",
       price: 4.99,
       total: 3,
-      image: "path/to/product15-image.jpg",
+      image:
+        "https://shatkora.sgp1.cdn.digitaloceanspaces.com/media/products/image-removebg-preview_3.png",
     },
   ];
 
   return (
-    <>
-      {products.map((product, index) => {
-        // <ProductCard product={product} />;
-      })}
-    </>
+    <SimpleGrid columns={{ base: 2, md: 3 }} spacing={4}>
+      {products.map((product, index) => (
+        <ProductCard key={index} product={product} />
+      ))}
+    </SimpleGrid>
   );
 };
 
