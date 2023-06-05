@@ -7,6 +7,7 @@ import {
   useDisclosure
 } from "@chakra-ui/react";
 import { FaShoppingBag } from "react-icons/fa";
+import {BiShoppingBag} from 'react-icons/bi';
 
 import CartDrawer from "./CartDrawer";
 
