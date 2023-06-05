@@ -4,7 +4,7 @@ import Logo from "../Logo";
 import Profile from "./Profile";
 import SearchBox from "./SearchInput";
 import Sidebar from "../Sidebar";
-import CartBag from "../CartBag";
+import CartBag from "../carts/CartBag";
 
 const Navbar = () => {
   return (

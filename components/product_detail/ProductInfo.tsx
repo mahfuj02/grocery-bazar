@@ -12,7 +12,7 @@ import { useState } from "react";
 import { BiCheck } from "react-icons/bi";
 import { Product } from "../products/ProductList";
 import WeightSelector from "./WeightSelector";
-import CartButton from "../CartButton";
+import CartButton from "../carts/CartButton";
 
 interface Props {
   product?: Product;

@@ -3,7 +3,7 @@ import { AddIcon } from "@chakra-ui/icons";
 import { BiCartAdd } from "react-icons/bi";
 import { networkInterfaces } from "os";
 import { Product } from "./ProductList";
-import CartButton from "../CartButton";
+import CartButton from "../carts/CartButton";
 
 interface Props {
   product: Product;
