@@ -4,6 +4,7 @@ import Logo from "../Logo";
 import Profile from "./Profile";
 import SearchBox from "./SearchInput";
 import Sidebar from "../Sidebar";
+import CartBag from "../CartBag";
 
 const Navbar = () => {
   return (
@@ -30,6 +31,7 @@ const Navbar = () => {
         </Show>
         {/* Login Button */}
         <Profile />
+        <CartBag />
       </Flex>
 
       <Show below="lg">
@@ -39,6 +41,7 @@ const Navbar = () => {
         </Box>{" "}
       </Show>
     </Box>
+
   );
 };
 
