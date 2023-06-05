@@ -2,6 +2,7 @@
 import { Box, Divider, Flex, IconButton, Text, VStack } from "@chakra-ui/react";
 import { AiOutlineClose } from "react-icons/ai";
 import { MinusIcon, AddIcon } from "@chakra-ui/icons";
+import CartButton, { VerticalCartButton } from "./CartButton";
 
 const Cart: React.FC = () => {
   // Replace with your actual cart items data
@@ -25,7 +26,9 @@ const Cart: React.FC = () => {
           alignItems="center"
           mb={4}
         >
-          <Box
+          {/* <CartButton cart=' /> */}
+          <VerticalCartButton />
+          {/* <Box
             // height={'50px'}
             display="flex"
             justifyContent="space-between"
@@ -52,7 +55,7 @@ const Cart: React.FC = () => {
               />
               
             </VStack>
-          </Box>
+          </Box> */}
           <Box width='50%'>
           <Text fontSize='12px' fontWeight='400'>{item.name}</Text>
           <Text fontSize={'10px'} fontWeight={600} textColor={'gray.500'}> tk75/100ml</Text>

@@ -29,32 +29,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Grid
-          templateAreas={{
-            base: `"carousel" "main"`,
-            lg: `"aside carousel" "aside main"`,
-          }}
-          templateColumns={{ base: "100%", lg: "1fr  75%" }}
-        >
-          <Show breakpoint="(min-width: 993px)">
-            <Box overflowY="auto" height="100vh" position="sticky" top={0}>
-              <GridItem area="aside">
-                <Sidebar />
-              </GridItem>
-            </Box>
-          </Show>
-          <Box bg={"mainPageBG"} overflowY="scroll" height="100vh">
-            <GridItem area="carousel" marginTop={5} alignItems="center ">
-              <Carousel />
-            </GridItem>
-            <GridItem area="main" margin={5}>
-              <Heading as="h6" fontSize="24px" fontWeight="700" my="10px">
-                Popular Product
-              </Heading>
-              <ProductList />
-            </GridItem>
-          </Box>
-        </Grid>
+        <Box marginTop={5} alignItems="center ">
+          <Carousel />
+        </Box>
+        <Heading as="h6" fontSize="24px" fontWeight="700" my="10px">
+          Popular Product
+        </Heading>
+        <ProductList />
       </main>
     </>
   );

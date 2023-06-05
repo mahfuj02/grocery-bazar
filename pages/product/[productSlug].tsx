@@ -3,6 +3,7 @@ import ProductInfo from "@/components/product_detail/ProductInfo";
 import { products } from "@/components/products/ProductList";
 import { convertSlug } from "@/services/convertToSlugt";
 import { Box, SimpleGrid } from "@chakra-ui/react";
+import { NextPageContext } from "next";
 import { useRouter } from "next/router";
 
 const ProductDetailPage = () => {
@@ -15,7 +16,7 @@ const ProductDetailPage = () => {
     <Box
       bg="mainPageBG"
       height="100vh"
-      px={{ base: 20, md: 50 }}
+      px={{ base: 1, md: 50 }}
       py={{ base: 30, md: 10 }}
     >
       <SimpleGrid columns={{ base: 1, md: 2 }} gap="2px">
@@ -25,5 +26,16 @@ const ProductDetailPage = () => {
     </Box>
   );
 };
+
+ProductDetailPage.getInitialProps = async (ctx: NextPageContext) => {
+  const { pathname } = ctx;
+
+  // Extract the page name from the pathname or customize it as needed
+  const pageName = 'productDetailPage';
+
+  // Pass the page name as a prop to the _app.tsx file
+  return { pageName };
+};
+
 
 export default ProductDetailPage;

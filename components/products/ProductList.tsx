@@ -170,7 +170,7 @@ export const products: Product[] = [
 const ProductList = () => {
   
   return (
-    <SimpleGrid columns={{ base: 2, md: 3 }} spacing={4}>
+    <SimpleGrid columns={{ base: 2, md: 3 }} spacing={{base:1, md:4}} >
       {products.map((product, index) => (
         <Link
           textDecoration='none'
