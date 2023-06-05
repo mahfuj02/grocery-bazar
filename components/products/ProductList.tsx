@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 import { SimpleGrid } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/next-js";
 import { title } from "process";
-import { convertSlug } from "@/services/convertToSlugt";
+import { convertSlug } from "@/utils/helper";
 
 export interface Product {
   title: string;

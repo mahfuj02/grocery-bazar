@@ -1,7 +1,7 @@
 import ImageGallery from "@/components/product_detail/ImageGallery";
 import ProductInfo from "@/components/product_detail/ProductInfo";
 import { products } from "@/components/products/ProductList";
-import { convertSlug } from "@/services/convertToSlugt";
+import { convertSlug } from "@/utils/helper";
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import { NextPageContext } from "next";
 import { useRouter } from "next/router";
