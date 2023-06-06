@@ -1,80 +1,127 @@
 import AddressForm from "@/components/checkout/AddressForm";
-import {
-  Box,
-  Heading,
-  Text
-} from "@chakra-ui/react";
+import { Box, Button, Heading, Text, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { BiMap, BiPlus } from "react-icons/bi";
 
 import { FormData } from "../../components/checkout/AddressForm";
+import DeleteAddress from "@/components/checkout/DeleteAddress";
 const CheckoutPage: React.FC = () => {
   const [allAddress, setAllAddress] = useState<FormData[]>([]);
+  const [showAddressForm, setShowAddressForm] = useState<boolean>(false);
+  const [counter, setCounter] = useState<number>(1);
+
+  const handleCounter = () => {
+    setCounter((prevCounter) => prevCounter + 1);
+  };
+
+  const handleShowAddressForm = () => {
+    setShowAddressForm(!showAddressForm);
+  };
 
   return (
     <>
-      <Box m={{ base: 1, lg: 4 }}>
-        <Box display="flex">
-          <BiMap size={"24px"} />
-          <Heading fontSize="16px" ml={"10px"}>
-            Select a Delivery Address
-          </Heading>
-        </Box>
-        <Box
-          display="flex"
-          padding={2}
-          borderRadius={5}
-          border={"1px solid #B7B7B7"}
-          width={"80%"}
-          alignItems={"center"}
-          justifyContent="center"
-          my={2}
-          cursor="pointer"
-        >
-          <BiPlus color="#1d3a4b" size="24px" />{" "}
-          <Text color="#1d3a4b" size="24px" ml={5}>
-            {" "}
-            New Address{" "}
-          </Text>
-        </Box>
-
-        {allAddress.map((data, index) => (
+      {!showAddressForm && (
+        <Box m={{ base: 1, lg: 4 }}>
+          <Box display="flex">
+            <BiMap size={"24px"} />
+            <Heading fontSize="16px" ml={"10px"}>
+              Select a Delivery Address
+            </Heading>
+          </Box>
           <Box
-            key={index}
             display="flex"
             padding={2}
             borderRadius={5}
             border={"1px solid #B7B7B7"}
-            width={"80%"}
+            width={{ base: "100", lg: "80%" }}
             alignItems={"center"}
             justifyContent="center"
             my={2}
             cursor="pointer"
+            onClick={() => setShowAddressForm(true)}
           >
-            <Text
-              color="#1d3a4b"
-              fontSize="14px"
-              fontWeight={500}
-              ml={5}
-              width="70%"
-            >
-              {`${data.floor ? data.floor + "," : ""} ${
-                data.apartment ? data.apartment + "," : ""
-              } ${data.address}`}
+            <BiPlus color="#1d3a4b" size="24px" />{" "}
+            <Text color="#1d3a4b" size="24px" ml={5}>
+              {" "}
+              New Address{" "}
             </Text>
-            <Box
-              color="red"
-              fontWeight="bold"
-              fontSize={"14px"}
-              _hover={{ borderBottom: "1px solid red" }}
-            >
-              delete
-            </Box>
           </Box>
-        ))}
-      </Box>
 
-      <AddressForm allAddress={allAddress} setAllAddress={setAllAddress} />
+          {allAddress.map((data, index) => (
+            <Box
+              key={index}
+              display="flex"
+              padding={2}
+              borderRadius={5}
+              border={"1px solid #B7B7B7"}
+              width={{ base: "100", lg: "80%" }}
+              my={2}
+              cursor="pointer"
+            >
+              <Text
+                color="#1d3a4b"
+                fontSize="14px"
+                fontWeight={500}
+                ml={5}
+                width="60%"
+              >
+                {`${data.floor ? data.floor + "," : ""} ${
+                  data.apartment ? data.apartment + "," : ""
+                } ${data.address}`}
+              </Text>
+              <Box display={{ lg: "flex" }} justifyContent="center">
+                <Box
+                  mr={{ lg: "90%" }}
+                  color="secondary"
+                  fontWeight="bold"
+                  fontSize={"14px"}
+                  _hover={{
+                    borderBottom: "1px solid",
+                    borderColor: "secondary",
+                  }}
+                >
+                  update
+                </Box>
+                <DeleteAddress
+                  data={data}
+                  allAddress={allAddress}
+                  setAllAddress={setAllAddress}
+                />
+              </Box>
+            </Box>
+          ))}
+        </Box>
+      )}
+      {showAddressForm && (
+        <AddressForm
+          counter={counter}
+          allAddress={allAddress}
+          setAllAddress={setAllAddress}
+          handleShowAddressForm={handleShowAddressForm}
+          handleCounter={handleCounter}
+        />
+      )}
+
+      <VStack minHeight='100vh'>
+        <Box position='sticky' bottom={4}>
+          <Button
+            borderRightRadius="none"
+            bg="secondary"
+            textColor="white"
+            _hover={{ bg: "secondary" }}
+          >
+            Place Order{" "}
+          </Button>
+          <Button
+            borderLeftRadius="none"
+            bg="#E04F54"
+            textColor="white"
+            _hover={{ bg: "#E04F54" }}
+          >
+            tk.12,000
+          </Button>
+        </Box>
+      </VStack>
     </>
   );
 };

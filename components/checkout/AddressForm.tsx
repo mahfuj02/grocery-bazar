@@ -1,7 +1,16 @@
-import { Box, Button, FormControl, FormLabel, Input, Text, Textarea } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Text,
+  Textarea,
+} from "@chakra-ui/react";
 import React, { useState } from "react";
 
 export interface FormData {
+  id?: number;
   name: string;
   phone: string;
   address: string;
@@ -10,13 +19,24 @@ export interface FormData {
   // date: string;
 }
 
-interface Props{
-    allAddress: FormData[]
-    setAllAddress:React.Dispatch<React.SetStateAction<FormData[]>>
+interface Props {
+  allAddress: FormData[];
+  counter: number;
+  setAllAddress: React.Dispatch<React.SetStateAction<FormData[]>>;
+  handleShowAddressForm: () => void;
+  handleCounter: () => void;
 }
 
-const AddressForm = ({allAddress, setAllAddress}: Props) => {
+const AddressForm = ({
+  counter,
+  allAddress,
+  setAllAddress,
+  handleShowAddressForm,
+  handleCounter,
+}: Props) => {
+  //   const [counter, setCounter] = useState<number>(1);
   const [formData, setFormData] = useState<FormData>({
+    // id: 0,
     name: "",
     phone: "",
     address: "",
@@ -40,8 +60,18 @@ const AddressForm = ({allAddress, setAllAddress}: Props) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setAllAddress([...allAddress, formData]);
+    const newAddress = {
+      id: counter,
+      phone: formData.phone,
+      name: formData.name,
+      floor: formData.floor,
+      apartment: formData.apartment,
+      address: formData.address,
+    };
+    setAllAddress([...allAddress, newAddress]);
+    handleCounter();
     setFormData({
+      //   id: 0,
       name: "",
       phone: "",
       address: "",
@@ -49,13 +79,19 @@ const AddressForm = ({allAddress, setAllAddress}: Props) => {
       apartment: "",
       // date: "",
     });
+    handleShowAddressForm();
   };
 
   return (
     <Box p={4} width={{ base: "1fr", lg: "80%" }}>
       <form onSubmit={handleSubmit}>
         <FormControl mb={4}>
-          <FormLabel>Name <Text as='span' color='red'>*</Text> </FormLabel>
+          <FormLabel>
+            Name{" "}
+            <Text as="span" color="red">
+              *
+            </Text>{" "}
+          </FormLabel>
           <Input
             placeholder="Enter Your Name"
             name="name"
@@ -65,7 +101,12 @@ const AddressForm = ({allAddress, setAllAddress}: Props) => {
           />
         </FormControl>
         <FormControl mb={4}>
-          <FormLabel>Phone Number <Text as='span' color='red'>*</Text> </FormLabel>
+          <FormLabel>
+            Phone Number{" "}
+            <Text as="span" color="red">
+              *
+            </Text>{" "}
+          </FormLabel>
           <Input
             type="tel"
             placeholder="Enter your phone number"
@@ -97,7 +138,12 @@ const AddressForm = ({allAddress, setAllAddress}: Props) => {
           </FormControl>
         </Box>
         <FormControl mb={4}>
-          <FormLabel>Address <Text as='span' color='red'>*</Text> </FormLabel>
+          <FormLabel>
+            Address{" "}
+            <Text as="span" color="red">
+              *
+            </Text>{" "}
+          </FormLabel>
           <Textarea
             placeholder="Enter your address"
             name="address"
@@ -106,8 +152,6 @@ const AddressForm = ({allAddress, setAllAddress}: Props) => {
             required
           />
         </FormControl>
-
-        
 
         {/* <FormControl mb={4}>
             <FormLabel>Preferred Delivery Date</FormLabel>
@@ -120,7 +164,17 @@ const AddressForm = ({allAddress, setAllAddress}: Props) => {
             />
           </FormControl> */}
         <Button colorScheme="teal" type="submit">
-          Place Order
+          Add Address
+        </Button>
+        <Button
+          onClick={handleShowAddressForm}
+          size={"md"}
+          color="white"
+          ml="70%"
+          bg="#E04F54"
+          _hover={{ bg: "#E04F54" }}
+        >
+          Back
         </Button>
       </form>
     </Box>
