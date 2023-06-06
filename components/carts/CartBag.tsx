@@ -4,15 +4,36 @@ import {
   HStack,
   Icon,
   Text,
-  useDisclosure
+  useDisclosure,
 } from "@chakra-ui/react";
 import { FaShoppingBag } from "react-icons/fa";
-import {BiShoppingBag} from 'react-icons/bi';
 
+import { useState } from "react";
 import CartDrawer from "./CartDrawer";
 
+export interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+}
+
+export const cartItemList = [
+  { id: 1, name: "Junior Children Tooth paste Orange Flavor", price: 10 },
+  {
+    id: 2,
+    name: " lavor  orange chips Junior Children Tooth paste Orange F",
+    price: 15,
+  },
+  { id: 3, name: "Frutiak pran mangoo", price: 20 },
+  { id: 4, name: "Product 1", price: 10 },
+  { id: 5, name: "Product 2", price: 15 },
+  { id: 6, name: "Product 3", price: 20 },
+  { id: 7, name: "Product 1", price: 10 },
+];
 const CartBag = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [cartItems, setCartItems] = useState<CartItem[]>(cartItemList);
+
   return (
     <>
       <Box
@@ -53,7 +74,12 @@ const CartBag = () => {
           </Box>
         </Button>
       </Box>
-      <CartDrawer isOpen={isOpen} onClose={onClose} />
+      <CartDrawer
+        isOpen={isOpen}
+        onClose={onClose}
+        cartItems={cartItems}
+        setCartItems={setCartItems}
+      />
     </>
   );
 };

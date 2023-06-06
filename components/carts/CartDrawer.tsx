@@ -1,27 +1,29 @@
 import {
-  Text,
+  Box,
+  Button,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
   DrawerContent,
-  DrawerHeader,
-  DrawerOverlay,
-  HStack,
-  Box,
   DrawerFooter,
-  Button,
-  VStack,
+  DrawerHeader,
+  HStack,
+  Text,
+  VStack
 } from "@chakra-ui/react";
-import React from "react";
-import Cart from "./Cart";
+import { Dispatch, SetStateAction } from "react";
 import { FaShoppingBag } from "react-icons/fa";
+import Cart from "./Cart";
+import { CartItem } from "./CartBag";
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  cartItems: CartItem[];
+  setCartItems: Dispatch<SetStateAction<CartItem[]>>;
 }
 
-const CartDrawer = ({ isOpen, onClose }: Props) => {
+const CartDrawer = ({ isOpen, onClose, cartItems, setCartItems }: Props) => {
   return (
     <Drawer isOpen={isOpen} onClose={onClose} size="sm">
       {/* <DrawerOverlay /> */}
@@ -29,14 +31,20 @@ const CartDrawer = ({ isOpen, onClose }: Props) => {
         <DrawerCloseButton />
         <DrawerHeader bg="gray.100">
           <HStack>
-            <FaShoppingBag /> <Text>7 ITEMS</Text>{" "}
+            <FaShoppingBag />{" "}
+            <Text>
+              {" "}
+              {cartItems.length <= 1
+                ? `${cartItems.length} Item`
+                : `${cartItems.length} Items`}{" "}
+            </Text>{" "}
           </HStack>
           <Text fontSize="12px" fontWeight="300">
             Groceries Delivered in 90 minutes
           </Text>
         </DrawerHeader>
         <DrawerBody overflowY={"scroll"}>
-          <Cart />
+          <Cart cartItems={cartItems} setCartItems={setCartItems} />
         </DrawerBody>
         <DrawerFooter>
           <VStack>

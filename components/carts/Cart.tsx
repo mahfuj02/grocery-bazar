@@ -1,27 +1,18 @@
 // Cart.tsx
-import { Box, Divider, Flex, IconButton, Text, VStack } from "@chakra-ui/react";
+import { Box, Divider, Flex, Text } from "@chakra-ui/react";
+import { Dispatch, SetStateAction } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import { MinusIcon, AddIcon } from "@chakra-ui/icons";
-import CartButton, { VerticalCartButton } from "./CartButton";
-import { useState } from "react";
+import { CartItem } from "./CartBag";
+import { VerticalCartButton } from "./CartButton";
 
-const cartItemList = [
-  { id: 1, name: "Junior Children Tooth paste Orange Flavor", price: 10 },
-  {
-    id: 2,
-    name: " lavor  orange chips Junior Children Tooth paste Orange F",
-    price: 15,
-  },
-  { id: 3, name: "Frutiak pran mangoo", price: 20 },
-  { id: 4, name: "Product 1", price: 10 },
-  { id: 5, name: "Product 2", price: 15 },
-  { id: 6, name: "Product 3", price: 20 },
-  { id: 7, name: "Product 1", price: 10 },
-];
+interface Props {
+  cartItems: CartItem[];
+  setCartItems: Dispatch<SetStateAction<CartItem[]>>;
+}
 
-const Cart: React.FC = () => {
+const Cart = ({ cartItems, setCartItems }: Props) => {
   // Replace with your actual cart items data
-  const [cartItems, setCartItems] = useState(cartItemList);
+  // const [cartItems, setCartItems] = useState(cartItemList);
 
   const hanldeDeleteCartItem = (itemId: number) => {
     const updatedCart = cartItems.filter((item) => item.id !== itemId);
@@ -79,9 +70,9 @@ const Cart: React.FC = () => {
             </Box>
             {/* <Text fontSize='12px' fontWeight='400'>{item.name}</Text> */}
             <Text textColor="secondary" fontWeight="600">
-              tk.300
+              tk.{item.price}
             </Text>
-            <Box _hover={{color:'red'}}>
+            <Box _hover={{ color: "red" }}>
               <AiOutlineClose
                 cursor="pointer"
                 onClick={() => hanldeDeleteCartItem(item.id)}

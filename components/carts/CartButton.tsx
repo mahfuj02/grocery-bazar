@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { Box, IconButton, VStack } from "@chakra-ui/react";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
-
+import { Box, IconButton, VStack } from "@chakra-ui/react";
+import { useState } from "react";
 
 export const VerticalCartButton = () => {
   const [quantity, setQuantity] = useState(0);
@@ -41,16 +40,16 @@ export const VerticalCartButton = () => {
         <IconButton
           aria-label="Increment"
           icon={<AddIcon boxSize="10px" />}
-          // onClick={incrementQuantity}
+          onClick={incrementQuantity}
           variant="unstyled"
         />
         <Box mx={1} fontWeight="300">
-          5
+          {quantity}
         </Box>
         <IconButton
           aria-label="Decrement"
           icon={<MinusIcon boxSize="10px" />}
-          // onClick={decrementQuantity}
+          onClick={decrementQuantity}
           variant="unstyled"
         />
       </VStack>
@@ -139,4 +138,3 @@ const CartButton = (): JSX.Element => {
 };
 
 export default CartButton;
-
