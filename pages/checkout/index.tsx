@@ -9,7 +9,7 @@ const CheckoutPage: React.FC = () => {
   const [allAddress, setAllAddress] = useState<FormData[]>([]);
   const [showAddressForm, setShowAddressForm] = useState<boolean>(false);
   const [counter, setCounter] = useState<number>(1);
-
+  const isButtonDisable = false;
   const handleCounter = () => {
     setCounter((prevCounter) => prevCounter + 1);
   };
@@ -90,6 +90,28 @@ const CheckoutPage: React.FC = () => {
               </Box>
             </Box>
           ))}
+          <VStack minHeight="100vh" mt={10}>
+            <Box position="sticky" bottom={4} zIndex={10}>
+              <Button
+                isDisabled={allAddress.length === 0 ? true : false}
+                borderRightRadius="none"
+                bg="secondary"
+                textColor="white"
+                _hover={{ bg: "secondary" }}
+              >
+                Proceed{" "}
+              </Button>
+              <Button
+                isDisabled={allAddress.length === 0 ? true : false}
+                borderLeftRadius="none"
+                bg="#E04F54"
+                textColor="white"
+                _hover={{ bg: "#E04F54" }}
+              >
+                tk.12,000
+              </Button>
+            </Box>
+          </VStack>
         </Box>
       )}
       {showAddressForm && (
@@ -101,27 +123,6 @@ const CheckoutPage: React.FC = () => {
           handleCounter={handleCounter}
         />
       )}
-
-      <VStack minHeight='100vh'>
-        <Box position='sticky' bottom={4}>
-          <Button
-            borderRightRadius="none"
-            bg="secondary"
-            textColor="white"
-            _hover={{ bg: "secondary" }}
-          >
-            Place Order{" "}
-          </Button>
-          <Button
-            borderLeftRadius="none"
-            bg="#E04F54"
-            textColor="white"
-            _hover={{ bg: "#E04F54" }}
-          >
-            tk.12,000
-          </Button>
-        </Box>
-      </VStack>
     </>
   );
 };
