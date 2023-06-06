@@ -23,7 +23,6 @@ import LoginModal from "../LoginModal";
 const Profile = () => {
   const { onOpen, isOpen, onClose } = useDisclosure();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  console.log("login status", isLoggedIn);
   const avatarUrl = avatar.src;
 
   const handleGoogleLogin = () => {

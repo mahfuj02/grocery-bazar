@@ -617,8 +617,8 @@ const CategoryList: React.FC = () => {
 
   return (
     <Box marginTop={5} marginLeft={5}>
-      {categories.map((category) => (
-        <SidebarItem key={category.title} category={category} level={0} />
+      {categories.map((category, index) => (
+        <SidebarItem key={index} category={category} level={0} />
       ))}
     </Box>
   );

@@ -13,7 +13,6 @@ interface Props {
 const ProductCard = ({ product }: Props) => {
 
   // if(!product)return;
-  console.log(" product package...",product)
   return (
     <Box bg="white" padding={2} maxW="sm" borderRadius="md" overflow="hidden">
       <Image
