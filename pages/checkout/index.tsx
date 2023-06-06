@@ -1,119 +1,81 @@
+import AddressForm from "@/components/checkout/AddressForm";
 import {
   Box,
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-  Textarea
+  Heading,
+  Text
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { BiMap, BiPlus } from "react-icons/bi";
 
-interface FormData {
-  name: string;
-  phone: string;
-  address: string;
-  floor: string;
-  apartment: string;
-  date: string;
-}
-
+import { FormData } from "../../components/checkout/AddressForm";
 const CheckoutPage: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    phone: "",
-    address: "",
-    floor: "",
-    apartment: "",
-    date: "",
-  });
-
-  const handleChange = (
-    event:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLSelectElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-  };
+  const [allAddress, setAllAddress] = useState<FormData[]>([]);
 
   return (
-    <Box p={4} width={{ base: "1fr", lg: "80%" }}>
-      <form onSubmit={handleSubmit}>
-        <FormControl mb={4}>
-          <FormLabel>Name</FormLabel>
-          <Input
-            placeholder="Enter Your Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </FormControl>
-        <FormControl mb={4}>
-          <FormLabel>Phone Number</FormLabel>
-          <Input
-            type="tel"
-            placeholder="Enter your phone number"
-            value={formData.date}
-            onChange={handleChange}
-            pattern="[0-9]*"
-            required
-          />
-        </FormControl>
-        <FormControl mb={4}>
-          <FormLabel>Address</FormLabel>
-          <Textarea
-            placeholder="Enter your address"
-            value={formData.address}
-            onChange={handleChange}
-            required
-          />
-        </FormControl>
-
-        <Box display="flex" gap={2}>
-          <FormControl mb={4}>
-            <FormLabel>Floor</FormLabel>
-            <Input
-              placeholder="Enter floor number"
-              value={formData.floor}
-              onChange={handleChange}
-              required
-            />
-          </FormControl>
-          <FormControl mb={4}>
-            <FormLabel>Apartment Number</FormLabel>
-            <Input
-              placeholder="Enter apartment number"
-              value={formData.apartment}
-              onChange={handleChange}
-              required
-            />
-          </FormControl>
+    <>
+      <Box m={{ base: 1, lg: 4 }}>
+        <Box display="flex">
+          <BiMap size={"24px"} />
+          <Heading fontSize="16px" ml={"10px"}>
+            Select a Delivery Address
+          </Heading>
+        </Box>
+        <Box
+          display="flex"
+          padding={2}
+          borderRadius={5}
+          border={"1px solid #B7B7B7"}
+          width={"80%"}
+          alignItems={"center"}
+          justifyContent="center"
+          my={2}
+          cursor="pointer"
+        >
+          <BiPlus color="#1d3a4b" size="24px" />{" "}
+          <Text color="#1d3a4b" size="24px" ml={5}>
+            {" "}
+            New Address{" "}
+          </Text>
         </Box>
 
-        <FormControl mb={4} isRequired>
-          <FormLabel>Preferred Delivery Date</FormLabel>
-          <Input
-            placeholder="Select Date and Time"
-            size="md"
-            type="datetime-local"
-            value={formData.date}
-            onChange={handleChange}
-          />
-        </FormControl>
-        <Button colorScheme="teal" type="submit">
-          Place Order
-        </Button>
-      </form>
-    </Box>
+        {allAddress.map((data, index) => (
+          <Box
+            key={index}
+            display="flex"
+            padding={2}
+            borderRadius={5}
+            border={"1px solid #B7B7B7"}
+            width={"80%"}
+            alignItems={"center"}
+            justifyContent="center"
+            my={2}
+            cursor="pointer"
+          >
+            <Text
+              color="#1d3a4b"
+              fontSize="14px"
+              fontWeight={500}
+              ml={5}
+              width="70%"
+            >
+              {`${data.floor ? data.floor + "," : ""} ${
+                data.apartment ? data.apartment + "," : ""
+              } ${data.address}`}
+            </Text>
+            <Box
+              color="red"
+              fontWeight="bold"
+              fontSize={"14px"}
+              _hover={{ borderBottom: "1px solid red" }}
+            >
+              delete
+            </Box>
+          </Box>
+        ))}
+      </Box>
+
+      <AddressForm allAddress={allAddress} setAllAddress={setAllAddress} />
+    </>
   );
 };
 
