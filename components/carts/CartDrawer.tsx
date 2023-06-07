@@ -9,7 +9,7 @@ import {
   DrawerHeader,
   HStack,
   Text,
-  VStack
+  VStack,
 } from "@chakra-ui/react";
 import { Dispatch, SetStateAction } from "react";
 import { FaShoppingBag } from "react-icons/fa";
@@ -54,10 +54,12 @@ const CartDrawer = ({ isOpen, onClose, cartItems, setCartItems }: Props) => {
                 bg="secondary"
                 textColor="white"
                 _hover={{ bg: "secondary" }}
+                isDisabled={cartItems.length === 0 ? true : false}
               >
                 Place Order{" "}
               </Button>
               <Button
+                isDisabled={cartItems.length === 0 ? true : false}
                 borderLeftRadius="none"
                 bg="#E04F54"
                 textColor="white"

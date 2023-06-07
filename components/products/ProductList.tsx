@@ -4,6 +4,7 @@ import { SimpleGrid } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/next-js";
 import { title } from "process";
 import { convertSlug } from "@/utils/helper";
+import axios from "axios";
 
 export interface Product {
   title: string;
@@ -167,8 +168,10 @@ export const products: Product[] = [
   },
 ];
 
+
+
 const ProductList = () => {
-  
+  // fetchData();
   return (
     <SimpleGrid columns={{ base: 2, md: 3 }} spacing={{base:1, md:4}} >
       {products.map((product, index) => (

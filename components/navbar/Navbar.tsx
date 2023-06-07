@@ -5,6 +5,7 @@ import Profile from "./Profile";
 import SearchBox from "./SearchInput";
 import Sidebar from "../Sidebar";
 import CartBag from "../carts/CartBag";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -22,7 +23,7 @@ const Navbar = () => {
 
         {/* Logo */}
         <Box width="100px" height="30px">
-          <Logo />
+          <Link href='/'> <Logo /> </Link>
         </Box>
 
         {/* Search Box */}

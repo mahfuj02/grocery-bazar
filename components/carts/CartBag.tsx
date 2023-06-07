@@ -70,7 +70,7 @@ const CartBag = () => {
             fontWeight="bold"
             padding={"2px"}
           >
-            tk<Text>0.00</Text>
+            tk<Text>1000.00</Text>
           </Box>
         </Button>
       </Box>
