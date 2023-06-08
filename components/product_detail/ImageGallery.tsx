@@ -21,16 +21,21 @@ const ImageGallery = ({ image, title }: Props) => {
 
   return (
     <Box
+    py='20px'
+    bg='white'
+    display='flex'
+    alignItems='center'
+    justifyContent='center'
     position="relative"
     overflow="hidden"
     onMouseMove={handleImageHover}
     onMouseLeave={() => setIsHovered(false)}
     >
        <ReactImageMagnify
+        style={{ height: '300px',}}
         {...{
           smallImage: {
             alt: "Product Image",
-            isFluidWidth: true,
             src: image,
           },
           largeImage: {

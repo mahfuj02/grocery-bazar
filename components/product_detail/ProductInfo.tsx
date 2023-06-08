@@ -11,9 +11,9 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { BiCheck } from "react-icons/bi";
-import { Product } from "../products/ProductList";
 import WeightSelector from "./WeightSelector";
 import CartButton from "../carts/CartButton";
+import { Product } from "@/utils/Product";
 
 interface Props {
   product?: Product;
@@ -30,7 +30,7 @@ const ProductInfo = ({ product }: Props) => {
         gap={2}
       >
         {/* Left side: Title */}
-        <Text fontWeight="bold">{product?.title}</Text>
+        <Text fontWeight="bold">{product?.product_name}</Text>
 
         {/* Right side: Price */}
         <Text

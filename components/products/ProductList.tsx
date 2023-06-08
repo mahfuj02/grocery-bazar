@@ -33,7 +33,7 @@ const ProductList = () => {
           textDecoration="none"
           _hover={{ textDecoration: "none" }}
           key={index}
-          href={`/product/${product.slug}`}
+          href={{pathname:`/product/${product.slug}`, query:{id: `${product._id}`}}}
         >
           <ProductCard product={product} />
         </Link>
