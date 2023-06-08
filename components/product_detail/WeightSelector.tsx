@@ -11,7 +11,11 @@ import {
 import { useState } from "react";
 import { BiCheck } from "react-icons/bi";
 
-const WeightSelector = () => {
+interface Props {
+  weight: string[];
+}
+
+const WeightSelector = ({ weight }: Props) => {
   const [selectedOption, setSelectedOption] = useState("1 kg");
 
   return (
@@ -32,25 +36,19 @@ const WeightSelector = () => {
         <ChevronDownIcon ml="10px" color="secondary" />
       </MenuButton>
       <MenuList>
-        <MenuItem
-          fontWeight="700"
-          textColor="#77798C"
-          onClick={() => setSelectedOption("500 mg")}
-          color={selectedOption === "500 mg" ? "secondary" : "#77798C"}
-          _hover={{ color: "secondary" }}
-        >
-          500 mg
-          {selectedOption === "500 mg" && <BiCheck color="secondary" />}
-        </MenuItem>
-        <MenuItem
-          fontWeight="700"
-          onClick={() => setSelectedOption("100 mg")}
-          color={selectedOption === "100 mg" ? "green" : "#77798C"}
-          _hover={{ color: "secondary" }}
-        >
-          100 mg
-          {selectedOption === "100 mg" && <BiCheck color="secondary" />}
-        </MenuItem>
+        {weight.map((w, index) => (
+          <MenuItem
+            key={index}
+            fontWeight="700"
+            textColor="#77798C"
+            onClick={() => setSelectedOption(w)}
+            color={selectedOption === w ? "secondary" : "#77798C"}
+            _hover={{ color: "secondary" }}
+          >
+            {w}
+            {selectedOption === w && <BiCheck color="secondary" />}
+          </MenuItem>
+        ))}
       </MenuList>
     </Menu>
   );

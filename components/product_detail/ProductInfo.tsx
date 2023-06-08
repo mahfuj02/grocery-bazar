@@ -20,6 +20,13 @@ interface Props {
 }
 
 const ProductInfo = ({ product }: Props) => {
+  const randomPrice = Math.floor(Math.random() * (1000 - 10 + 1)) + 10;
+  const newProduct = {
+      ...product,
+      price:randomPrice,
+      weight: ['100mg', '500mg', '1kg']
+
+  }
   const [selectedOption, setSelectedOption] = useState("1 kg");
 
   return (
@@ -30,7 +37,7 @@ const ProductInfo = ({ product }: Props) => {
         gap={2}
       >
         {/* Left side: Title */}
-        <Text fontWeight="bold">{product?.product_name}</Text>
+        <Text fontWeight="bold">{newProduct?.product_name}</Text>
 
         {/* Right side: Price */}
         <Text
@@ -40,14 +47,14 @@ const ProductInfo = ({ product }: Props) => {
           fontSize="16px"
           fontWeight={700}
         >
-          tk.{product?.price}
+          tk.{newProduct?.price}
         </Text>
       </Grid>
 
       {/* Second Row */}
       <Grid templateColumns={{ base: "1fr", lg: "1fr 1fr" }} gap={2}>
         <Box width={{base:'100%'}}>
-          <WeightSelector />
+          <WeightSelector weight = {newProduct.weight} />
         </Box>
         <Box width={{base:'50%', lg:'100%'}}>
           <CartButton />

@@ -4,19 +4,16 @@ import { Link } from "@chakra-ui/next-js";
 import { SimpleGrid } from "@chakra-ui/react";
 import ProductCard from "./ProductCard";
 import ProdcutCardSkeleton from "../ProductCardSkeleton";
+import productData from "@/utils/productUtils";
 
 let products;
 const ProductList = () => {
   const { data, error, isLoading } = useProducts();
   const skeltons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+  products = productData(data?.products)
+
   products = data?.products;
-  products?.forEach((product) => {
-    const randomPrice = Math.floor(Math.random() * (1000 - 10 + 1)) + 10;
-    product.price = randomPrice;
-    product.slug = convertSlug(product.product_name);
-    product.weight = ["100mg", "500mg", "1kg"];
-  });
 
   if (error) null;
   // if (isLoading) return <p>Loading....</p>;
