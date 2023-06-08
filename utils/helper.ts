@@ -1,8 +1,8 @@
-export const convertSlug = (title: string) => {
+export const convertSlug = (name_en: string) => {
   const separator = "-"; // You can use any separator character
-
+  console.log("Here is the title.. from product", name_en)
   // Remove leading/trailing spaces and convert to lowercase
-  let slug = title.trim().toLowerCase();
+  let slug = name_en.trim().toLowerCase();
 
   // Replace spaces with separator
   slug = slug.replace(/\s+/g, separator);
