@@ -1,19 +1,12 @@
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { Product } from "@/utils/Product";
 import {
   Box,
-  Button,
   Grid,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Text,
+  Text
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { BiCheck } from "react-icons/bi";
-import WeightSelector from "./WeightSelector";
 import CartButton from "../carts/CartButton";
-import { Product } from "@/utils/Product";
+import WeightSelector from "./WeightSelector";
 
 interface Props {
   product?: Product;
@@ -22,11 +15,10 @@ interface Props {
 const ProductInfo = ({ product }: Props) => {
   const randomPrice = Math.floor(Math.random() * (1000 - 10 + 1)) + 10;
   const newProduct = {
-      ...product,
-      price:randomPrice,
-      weight: ['100mg', '500mg', '1kg']
-
-  }
+    ...product,
+    price: randomPrice,
+    weight: ["100mg", "500mg", "1kg"],
+  };
   const [selectedOption, setSelectedOption] = useState("1 kg");
 
   return (
@@ -53,10 +45,10 @@ const ProductInfo = ({ product }: Props) => {
 
       {/* Second Row */}
       <Grid templateColumns={{ base: "1fr", lg: "1fr 1fr" }} gap={2}>
-        <Box width={{base:'100%'}}>
-          <WeightSelector weight = {newProduct.weight} />
+        <Box width={{ base: "100%" }}>
+          <WeightSelector weight={newProduct.weight} />
         </Box>
-        <Box width={{base:'50%', lg:'100%'}}>
+        <Box width={{ base: "50%", lg: "100%" }}>
           <CartButton />
         </Box>
       </Grid>

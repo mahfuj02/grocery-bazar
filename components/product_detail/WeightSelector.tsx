@@ -1,12 +1,10 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Button,
-  Grid,
   Menu,
   MenuButton,
   MenuItem,
-  MenuList,
-  Text,
+  MenuList
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { BiCheck } from "react-icons/bi";

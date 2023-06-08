@@ -1,15 +1,23 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { config } from "process";
 
-interface ProductsFetchResponse<T> {
+interface ApiResponse {
   count: number;
-  products: T[];
 }
+
+interface ProductResponse<T> extends ApiResponse{
+  products: T[]
+}
+
+interface CategoryResponse<T> extends ApiResponse{
+  tags: T[]
+}
+
 
 interface ProductFetchResponse<T> {
-  code:number;
+  code: number;
   product: T;
 }
+
 
 export const axiosInstance = axios.create({
   baseURL: "https://world.openfoodfacts.org",
@@ -23,12 +31,14 @@ class APIClient<T> {
   }
   getAll = (config: AxiosRequestConfig) => {
     return axiosInstance
-      .get<ProductsFetchResponse<T>>(this.endpoint, config)
+      .get<ProductResponse<T>>(this.endpoint, config)
       .then((res) => res.data);
   };
-  get = (id: string) =>{
-    return axiosInstance.get<ProductFetchResponse<T>>(this.endpoint+ '/' + id).then((res) => res.data)
-  }
+  get = (id: string) => {
+    return axiosInstance
+      .get<ProductFetchResponse<T>>(this.endpoint + "/" + id)
+      .then((res) => res.data);
+  };
 }
 
 export default APIClient;
