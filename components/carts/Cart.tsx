@@ -1,22 +1,15 @@
 // Cart.tsx
+import useCartStore from "@/hooks/useCartStore";
 import { Box, Divider, Flex, Text } from "@chakra-ui/react";
-import { Dispatch, SetStateAction } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import { CartItem } from "./CartBag";
 import { VerticalCartButton } from "./CartButton";
 
-interface Props {
-  cartItems: CartItem[];
-  setCartItems: Dispatch<SetStateAction<CartItem[]>>;
-}
-
-const Cart = ({ cartItems, setCartItems }: Props) => {
-  // Replace with your actual cart items data
-  // const [cartItems, setCartItems] = useState(cartItemList);
+const Cart = () => {
+  const cartItems = useCartStore((s) => s.cartItems);
+  const removeFromCart = useCartStore((s) => s.removeFromCart);
 
   const hanldeDeleteCartItem = (itemId: number) => {
-    const updatedCart = cartItems.filter((item) => item.id !== itemId);
-    setCartItems(updatedCart);
+    removeFromCart(itemId);
   };
 
   return (
@@ -30,7 +23,7 @@ const Cart = ({ cartItems, setCartItems }: Props) => {
             mb={4}
           >
             {/* <CartButton cart=' /> */}
-            <VerticalCartButton />
+            <VerticalCartButton productId={item.id} quantity={item.quantity} />
             {/* <Box
             // height={'50px'}
             display="flex"

@@ -1,31 +1,27 @@
+import useCartStore from "@/hooks/useCartStore";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import { Box, IconButton, VStack } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export const VerticalCartButton = () => {
-  const [quantity, setQuantity] = useState(0);
+interface VerticalButtonProps {
+  productId: number;
+  quantity: number;
+}
 
-  const incrementQuantity = () => {
-    setQuantity(quantity + 1);
-  };
+interface CartButtonProps {
+  name: string;
+  price: number;
+  id: number;
+}
 
-  const decrementQuantity = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
-    }
-  };
+export const VerticalCartButton = ({
+  productId,
+  quantity,
+}: VerticalButtonProps) => {
+  const incrementQuantity = useCartStore((s) => s.incrementQuantity);
+  const decrementQuantity = useCartStore((s) => s.decrementQuantity);
+  const removeFromCart = useCartStore((s) => s.removeFromCart);
 
-  const handleFirstCartButtonClick = (
-    event: React.MouseEvent<HTMLDivElement>
-  ) => {
-    event.preventDefault();
-    incrementQuantity();
-  };
-
-  const handleCartButtonClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    // incrementQuantity();
-  };
   return (
     <Box
       // height={'50px'}
@@ -40,7 +36,7 @@ export const VerticalCartButton = () => {
         <IconButton
           aria-label="Increment"
           icon={<AddIcon boxSize="10px" />}
-          onClick={incrementQuantity}
+          onClick={() => incrementQuantity(productId)}
           variant="unstyled"
         />
         <Box mx={1} fontWeight="300">
@@ -49,7 +45,7 @@ export const VerticalCartButton = () => {
         <IconButton
           aria-label="Decrement"
           icon={<MinusIcon boxSize="10px" />}
-          onClick={decrementQuantity}
+          onClick={() => decrementQuantity(productId)}
           variant="unstyled"
         />
       </VStack>
@@ -57,24 +53,39 @@ export const VerticalCartButton = () => {
   );
 };
 
-const CartButton = (): JSX.Element => {
+const CartButton = ({ name, price, id }: CartButtonProps): JSX.Element => {
   const [quantity, setQuantity] = useState(0);
 
-  const incrementQuantity = () => {
-    setQuantity(quantity + 1);
-  };
+  const {
+    cartItems,
+    incrementQuantity,
+    decrementQuantity,
+    addToCart,
+    removeFromCart,
+  } = useCartStore();
 
-  const decrementQuantity = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
-    }
-  };
+  useEffect(() => {
+    let data = cartItems.find((item) => item.id === id)?.quantity;
+    if (data === undefined) data = 0;
+    setQuantity(data);
+  }, [cartItems, id, quantity]);
+
+  useEffect(() => {
+    if (quantity <= 0) removeFromCart(id);
+  }, [id, quantity, removeFromCart]);
 
   const handleFirstCartButtonClick = (
     event: React.MouseEvent<HTMLDivElement>
   ) => {
     event.preventDefault();
-    incrementQuantity();
+    const product = {
+      id,
+      name,
+      price,
+      quantity,
+    };
+    addToCart(product);
+    incrementQuantity(id);
   };
 
   const handleCartButtonClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -119,7 +130,7 @@ const CartButton = (): JSX.Element => {
       <IconButton
         aria-label="Decrement"
         icon={<MinusIcon />}
-        onClick={decrementQuantity}
+        onClick={() => decrementQuantity(id)}
         variant="unstyled"
         color="white"
       />
@@ -129,7 +140,7 @@ const CartButton = (): JSX.Element => {
       <IconButton
         aria-label="Increment"
         icon={<AddIcon />}
-        onClick={incrementQuantity}
+        onClick={() => incrementQuantity(id)}
         variant="unstyled"
         color="white"
       />

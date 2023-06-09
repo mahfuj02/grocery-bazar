@@ -10,9 +10,7 @@ let products;
 const ProductList = () => {
   const { data, error, isLoading } = useProducts();
   const skeltons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
   products = productData(data?.products)
-
   products = data?.products;
 
   if (error) null;

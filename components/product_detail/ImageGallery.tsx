@@ -1,6 +1,6 @@
 import { Box, Image } from "@chakra-ui/react";
 import { useState } from "react";
-import ReactImageMagnify from 'react-image-magnify';
+// import ReactImageMagnify from 'react-image-magnify';
 // import  from 'react-image-magnify'
 
 interface Props {
@@ -31,7 +31,7 @@ const ImageGallery = ({ image, title }: Props) => {
     onMouseMove={handleImageHover}
     onMouseLeave={() => setIsHovered(false)}
     >
-       <ReactImageMagnify
+       {/* <ReactImageMagnify
         style={{ height: '300px',}}
         {...{
           smallImage: {
@@ -48,12 +48,12 @@ const ImageGallery = ({ image, title }: Props) => {
           // hoverOffDelayInMs: 0,
           // isHintEnabled: true,
         }}
-      />
-      {/* <Image
+      /> */}
+      <Image
         src={image}
         alt={title}
       
-      /> */}
+      />
     </Box>
   );
 };

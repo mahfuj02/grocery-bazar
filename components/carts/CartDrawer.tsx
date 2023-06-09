@@ -11,19 +11,18 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { Dispatch, SetStateAction } from "react";
 import { FaShoppingBag } from "react-icons/fa";
 import Cart from "./Cart";
-import { CartItem } from "./CartBag";
+import useCartStore from "@/hooks/useCartStore";
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
-  cartItems: CartItem[];
-  setCartItems: Dispatch<SetStateAction<CartItem[]>>;
 }
 
-const CartDrawer = ({ isOpen, onClose, cartItems, setCartItems }: Props) => {
+const CartDrawer = ({ isOpen, onClose }: Props) => {
+
+  const cartItems = useCartStore((s) => s.cartItems)
   return (
     <Drawer isOpen={isOpen} onClose={onClose} size="sm">
       {/* <DrawerOverlay /> */}
@@ -44,7 +43,7 @@ const CartDrawer = ({ isOpen, onClose, cartItems, setCartItems }: Props) => {
           </Text>
         </DrawerHeader>
         <DrawerBody overflowY={"scroll"}>
-          <Cart cartItems={cartItems} setCartItems={setCartItems} />
+          <Cart />
         </DrawerBody>
         <DrawerFooter>
           <VStack>

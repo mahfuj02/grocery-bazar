@@ -12,7 +12,6 @@ interface CategoryResponse<T> extends ApiResponse{
   tags: T[]
 }
 
-
 interface ProductFetchResponse<T> {
   code: number;
   product: T;
@@ -39,6 +38,12 @@ class APIClient<T> {
       .get<ProductFetchResponse<T>>(this.endpoint + "/" + id)
       .then((res) => res.data);
   };
+  getCategories = (config: AxiosRequestConfig) => {
+    return axiosInstance
+      .get<CategoryResponse<T>>(this.endpoint, config)
+      .then((res) => res.data)
+  };
+
 }
 
 export default APIClient;

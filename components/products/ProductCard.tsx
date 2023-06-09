@@ -9,14 +9,7 @@ interface Props {
 const ProductCard = ({ product }: Props) => {
   // if(!product)return;
   return (
-    <Box
-      bg="white"
-      padding={2}
-      maxW="sm"
-      borderRadius="md"
-      overflow="hidden"
-      
-    >
+    <Box bg="white" padding={2} maxW="sm" borderRadius="md" overflow="hidden">
       <Box display="flex" alignItems="center" justifyContent="center">
         <Image
           src={product?.image_url}
@@ -47,7 +40,11 @@ const ProductCard = ({ product }: Props) => {
         </Box>
       </Box>
       <Box px={4} pb={4} alignContent="center" justifyContent="center">
-        <CartButton />
+        <CartButton
+          name={product.product_name}
+          price={product.price}
+          id={product._id}
+        />
       </Box>
     </Box>
   );
