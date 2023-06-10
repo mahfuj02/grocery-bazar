@@ -20,7 +20,6 @@ export const VerticalCartButton = ({
 }: VerticalButtonProps) => {
   const incrementQuantity = useCartStore((s) => s.incrementQuantity);
   const decrementQuantity = useCartStore((s) => s.decrementQuantity);
-  const removeFromCart = useCartStore((s) => s.removeFromCart);
 
   return (
     <Box

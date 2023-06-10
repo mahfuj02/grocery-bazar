@@ -1,3 +1,5 @@
+import CartItem from "./CartItem";
+
 export const convertSlug = (name_en: string) => {
   const separator = "-"; // You can use any separator character
   // Remove leading/trailing spaces and convert to lowercase
@@ -17,31 +19,3 @@ export const convertSlug = (name_en: string) => {
 
   return slug;
 };
-
-// export const generateTimeOptions = () => {
-//   const timeOptions = [];
-//   const startTime = 8;
-//   const endTime = 23;
-//   const timeGap = 90;
-
-//   for (let hour = startTime; hour <= endTime; hour++) {
-//     for (let minutes = 0; minutes < 60; minutes += timeGap) {
-//       const startTimeString = `${hour.toString().padStart(2, "0")}:${minutes
-//         .toString()
-//         .padStart(2, "0")}`;
-//       const endTimeString = `${(hour + 1).toString().padStart(2, "0")}:${(
-//         minutes + timeGap
-//       )
-//         .toString()
-//         .padStart(2, "0")}`;
-//       const timeOption = `${startTimeString} - ${endTimeString}`;
-//       timeOptions.push(
-//         <option key={timeOption} value={timeOption}>
-//           {timeOption}
-//         </option>
-//       );
-//     }
-//   }
-
-//   return timeOptions;
-// };

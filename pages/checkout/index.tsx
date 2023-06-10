@@ -5,10 +5,14 @@ import { BiMap, BiPlus } from "react-icons/bi";
 
 import { FormData } from "../../components/checkout/AddressForm";
 import DeleteAddress from "@/components/checkout/DeleteAddress";
+import useCartStore from "@/hooks/useCartStore";
 const CheckoutPage: React.FC = () => {
   const [allAddress, setAllAddress] = useState<FormData[]>([]);
   const [showAddressForm, setShowAddressForm] = useState<boolean>(false);
   const [counter, setCounter] = useState<number>(1);
+
+  const totalTk = useCartStore((s) => s.totalMoney);
+
   const isButtonDisable = false;
   const handleCounter = () => {
     setCounter((prevCounter) => prevCounter + 1);
@@ -108,7 +112,7 @@ const CheckoutPage: React.FC = () => {
                 textColor="white"
                 _hover={{ bg: "#E04F54" }}
               >
-                tk.12,000
+                {totalTk}
               </Button>
             </Box>
           </VStack>

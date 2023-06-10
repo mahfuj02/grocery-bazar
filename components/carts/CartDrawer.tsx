@@ -23,6 +23,7 @@ interface Props {
 const CartDrawer = ({ isOpen, onClose }: Props) => {
 
   const cartItems = useCartStore((s) => s.cartItems)
+  const totalTk = useCartStore((s) => s.totalMoney)
   return (
     <Drawer isOpen={isOpen} onClose={onClose} size="sm">
       {/* <DrawerOverlay /> */}
@@ -64,7 +65,7 @@ const CartDrawer = ({ isOpen, onClose }: Props) => {
                 textColor="white"
                 _hover={{ bg: "#E04F54" }}
               >
-                tk.12,000
+                {totalTk}
               </Button>
             </Box>
           </VStack>

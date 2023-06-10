@@ -10,29 +10,13 @@ import { FaShoppingBag } from "react-icons/fa";
 
 import { useState } from "react";
 import CartDrawer from "./CartDrawer";
+import useCartStore from "@/hooks/useCartStore";
 
-export interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-}
-
-export const cartItemList = [
-  { id: 1, name: "Junior Children Tooth paste Orange Flavor", price: 10 },
-  {
-    id: 2,
-    name: " lavor  orange chips Junior Children Tooth paste Orange F",
-    price: 15,
-  },
-  { id: 3, name: "Frutiak pran mangoo", price: 20 },
-  { id: 4, name: "Product 1", price: 10 },
-  { id: 5, name: "Product 2", price: 15 },
-  { id: 6, name: "Product 3", price: 20 },
-  { id: 7, name: "Product 1", price: 10 },
-];
 const CartBag = () => {
+
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [cartItems, setCartItems] = useState<CartItem[]>(cartItemList);
+  const cartItems = useCartStore((s) => s.cartItems);
+  const totalTK = useCartStore((s) => s.totalMoney)
 
   return (
     <>
@@ -55,7 +39,9 @@ const CartBag = () => {
           <HStack spacing={2} marginBottom={"20px"}>
             <Icon as={FaShoppingBag} boxSize={"16px"} color="white" />
             <Text textColor="white" fontWeight="700">
-              10 Items
+              {cartItems.length <= 1
+                ? `${cartItems.length} item`
+                : `${cartItems.length} items`}
             </Text>
           </HStack>
           <Box
@@ -70,16 +56,11 @@ const CartBag = () => {
             fontWeight="bold"
             padding={"2px"}
           >
-            tk<Text>1000.00</Text>
+            tk<Text>{totalTK}</Text>
           </Box>
         </Button>
       </Box>
-      <CartDrawer
-        isOpen={isOpen}
-        onClose={onClose}
-        cartItems={cartItems}
-        setCartItems={setCartItems}
-      />
+      <CartDrawer isOpen={isOpen} onClose={onClose} />
     </>
   );
 };
