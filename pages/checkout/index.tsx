@@ -94,8 +94,8 @@ const CheckoutPage: React.FC = () => {
               </Box>
             </Box>
           ))}
-          <VStack minHeight="100vh" mt={10}>
-            <Box position="sticky" bottom={4} zIndex={10}>
+          <VStack mt={10}>
+            <Box>
               <Button
                 isDisabled={allAddress.length === 0 ? true : false}
                 borderRightRadius="none"

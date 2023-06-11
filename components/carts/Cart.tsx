@@ -58,7 +58,7 @@ const Cart = () => {
               </Text>
               <Text fontSize={"10px"} fontWeight={600} textColor={"gray.500"}>
                 {" "}
-                tk75/100ml
+                tk{item.price}/75ml
               </Text>
             </Box>
             {/* <Text fontSize='12px' fontWeight='400'>{item.name}</Text> */}

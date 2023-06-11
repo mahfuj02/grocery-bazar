@@ -14,6 +14,7 @@ import {
 import { FaShoppingBag } from "react-icons/fa";
 import Cart from "./Cart";
 import useCartStore from "@/hooks/useCartStore";
+import { useRouter } from "next/router";
 
 interface Props {
   isOpen: boolean;
@@ -24,6 +25,13 @@ const CartDrawer = ({ isOpen, onClose }: Props) => {
 
   const cartItems = useCartStore((s) => s.cartItems)
   const totalTk = useCartStore((s) => s.totalMoney)
+
+  const router = useRouter()
+
+  const handleCheckout = () => {
+    router.push('/checkout')
+  }
+
   return (
     <Drawer isOpen={isOpen} onClose={onClose} size="sm">
       {/* <DrawerOverlay /> */}
@@ -46,9 +54,9 @@ const CartDrawer = ({ isOpen, onClose }: Props) => {
         <DrawerBody overflowY={"scroll"}>
           <Cart />
         </DrawerBody>
-        <DrawerFooter>
+        <DrawerFooter >
           <VStack>
-            <Box>
+            <Box onClick={handleCheckout} >
               <Button
                 borderRightRadius="none"
                 bg="secondary"

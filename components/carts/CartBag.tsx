@@ -13,10 +13,9 @@ import CartDrawer from "./CartDrawer";
 import useCartStore from "@/hooks/useCartStore";
 
 const CartBag = () => {
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cartItems = useCartStore((s) => s.cartItems);
-  const totalTK = useCartStore((s) => s.totalMoney)
+  const totalTK = useCartStore((s) => s.totalMoney);
 
   return (
     <>
