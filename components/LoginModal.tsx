@@ -8,8 +8,6 @@ import {
   ModalHeader,
   ModalOverlay
 } from "@chakra-ui/react";
-
-
 import { GoogleIcon } from "@/providers/ProviderIcons";
 import Logo from "./Logo";
 

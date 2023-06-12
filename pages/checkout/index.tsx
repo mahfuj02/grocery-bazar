@@ -1,7 +1,7 @@
 import AddressForm from "@/components/checkout/AddressForm";
-import { Box, Button, Heading, Text, VStack } from "@chakra-ui/react";
+import { Badge, Box, Button, Heading, Text, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { BiMap, BiPlus } from "react-icons/bi";
+import { BiMap, BiPlus, BiMoney } from "react-icons/bi";
 
 import { FormData } from "../../components/checkout/AddressForm";
 import DeleteAddress from "@/components/checkout/DeleteAddress";
@@ -94,6 +94,57 @@ const CheckoutPage: React.FC = () => {
               </Box>
             </Box>
           ))}
+
+          <Box
+            borderRadius={5}
+            border={"1px solid #B7B7B7"}
+            width={{ base: "100", lg: "80%" }}
+            my={2}
+            p={5}
+          >
+            <Box display="flex" ml={"10px"} mb={5}>
+              <BiMoney size="24px" />
+              <Heading fontSize="16px" px={3}>
+                Payment Option
+              </Heading>
+            </Box>
+
+            <VStack>
+              <Box>
+                <Button
+                  size="lg"
+                  width={{ base: "100px", md:'150px', lg: "200px" }}
+                  bg="secondary"
+                  textColor="white"
+                  _hover={{ bg: "secondary" }}
+                  mr={10}
+                >
+                  Proceed{" "}
+                </Button>
+                <Button
+                  size="lg"
+                  width={{ base: "100px", md:'150px', lg: "200px" }}
+                  colorScheme="#F7F7F7"
+                  border="1px solid #FF3131"
+                  textColor="black"
+                  cursor='default'
+                >
+                  Bkash
+                  <Box position="absolute" top="-12px" right="6px">
+                    <Badge
+                      textColor="white"
+                      fontSize="10px"
+                      p="5px"
+                      bg="#D01E6A"
+                    >
+                      coming soon
+                    </Badge>
+                  </Box>
+                </Button>
+              </Box>
+            </VStack>
+          </Box>
+
           <VStack mt={10}>
             <Box>
               <Button
