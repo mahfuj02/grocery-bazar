@@ -24,7 +24,6 @@ interface Props {
 const CartDrawer = ({ isOpen, onClose }: Props) => {
 
   const cartItems = useCartStore((s) => s.cartItems)
-  const totalTk = useCartStore((s) => s.totalMoney)
 
   const router = useRouter()
 
@@ -73,7 +72,7 @@ const CartDrawer = ({ isOpen, onClose }: Props) => {
                 textColor="white"
                 _hover={{ bg: "#E04F54" }}
               >
-                {totalTk}
+                tk.12,000
               </Button>
             </Box>
           </VStack>
