@@ -9,7 +9,7 @@ import CartButton from "../carts/CartButton";
 import WeightSelector from "./WeightSelector";
 
 interface Props {
-  product?: Product;
+  product: Product;
 }
 
 const ProductInfo = ({ product }: Props) => {
@@ -49,7 +49,7 @@ const ProductInfo = ({ product }: Props) => {
           <WeightSelector weight={newProduct.weight} />
         </Box>
         <Box width={{ base: "50%", lg: "100%" }}>
-          <CartButton />
+          <CartButton name={newProduct?.product_name} price={newProduct.price} id={newProduct?._id} />
         </Box>
       </Grid>
 

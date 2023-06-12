@@ -14,6 +14,7 @@ const ProductDetailPage = () => {
   console.log("id is a string: ", id);
   const { data, error, isLoading } = useProduct(id);
   const product = data?.product;
+  if(product === undefined) return null;
   // const product = products.find(
   //   (product) => convertSlug(product.) === productSlug
   // );
