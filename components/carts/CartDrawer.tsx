@@ -29,6 +29,7 @@ const CartDrawer = ({ isOpen, onClose }: Props) => {
   const router = useRouter()
 
   const handleCheckout = () => {
+    onClose();
     router.push('/checkout')
   }
 
