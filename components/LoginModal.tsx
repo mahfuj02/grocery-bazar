@@ -1,20 +1,17 @@
 import {
   Box,
   Button,
-  Heading,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalHeader,
-  ModalOverlay,
+  ModalOverlay
 } from "@chakra-ui/react";
 
-import { Google } from "@mui/icons-material";
 
-import Logo from "./Logo";
-import { Dispatch, SetStateAction, useEffect } from "react";
 import { GoogleIcon } from "@/providers/ProviderIcons";
+import Logo from "./Logo";
 
 interface Props {
   isOpen: boolean;
