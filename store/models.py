@@ -18,7 +18,11 @@ class Product(models.Model):
     inventory = models.IntegerField()
     last_update = models.DateTimeField(auto_now=True)
     categories = models.ManyToManyField(Category, related_name='products')
-    promotions = models.ManyToManyField(Promotion, related_name='products') 
+    promotions = models.ManyToManyField(Promotion, related_name='products')
+
+    
+    def __str__(self) -> str:
+        return self.title
 
 
 class Customer(models.Model):
@@ -28,12 +32,18 @@ class Customer(models.Model):
     phone = models.CharField(max_length=255, null=True)
     birth_date = models.DateField(null=True)
 
+    def __str__(self) -> str:
+        return self.first_name
+
 
 class Address(models.Model):
     floor = models.CharField(max_length=255)
     apartment = models.CharField(max_length=255)
     area = models.TextField()
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.floor
 
 
 class Order(models.Model):
@@ -42,7 +52,7 @@ class Order(models.Model):
     PAYMENT_STATUS_FAILD = 'F'
     PAYMENT_STATUS_CHOICES = [
         (PAYMENT_STATUS_PENDING, 'Pending'),
-        (PAYMENT_STATUS_FAILD, 'FAild'),
+        (PAYMENT_STATUS_FAILD, 'Faild'),
         (PAYMENT_STATUS_COMPLETE, 'Complete')
     ]
     placed_at = models.DateTimeField(auto_now_add=True)
