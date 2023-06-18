@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'grocery_bazar.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'grocery_bazar',
+        'HOST': 'localhost',
+        'USER':'root',
+        'PASSWORD':'mahfuj1234@'
+
     }
 }
 

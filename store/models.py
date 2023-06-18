@@ -13,7 +13,8 @@ class Promotion(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    price = models.IntegerField()
+    slug = models.SlugField(default='-')
+    unit_price = models.IntegerField()
     inventory = models.IntegerField()
     last_update = models.DateTimeField(auto_now=True)
     categories = models.ManyToManyField(Category, related_name='products')
