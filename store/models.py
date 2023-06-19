@@ -6,6 +6,9 @@ from django.db import models
 class Category(models.Model):
     title = models.CharField(max_length=255)
 
+    def __str__(self) -> str:
+        return self.title
+
 class Promotion(models.Model):
     desription = models.CharField(max_length=255)
     discount = models.IntegerField()
@@ -15,21 +18,16 @@ class Product(models.Model):
     description = models.TextField()
     slug = models.SlugField(default='-')
     unit_price = models.IntegerField()
+    weight = models.CharField(max_length=255, null=True)
     inventory = models.IntegerField()
     last_update = models.DateTimeField(auto_now=True)
     categories = models.ManyToManyField(Category, related_name='products')
-    promotions = models.ManyToManyField(Promotion, related_name='products')
+    promotions = models.ManyToManyField(Promotion, related_name='products', blank=True)
 
     
     def __str__(self) -> str:
         return self.title
 
-class Weight(models.Model):
-    title = models.CharField(max_length=255)
-    product = models.ForeignKey(Product, on_delete=models.PROTECT, null=True)
-
-    def __str__(self) -> str:
-        return self.title
 
 class Customer(models.Model):
     first_name = models.CharField(max_length=255)
