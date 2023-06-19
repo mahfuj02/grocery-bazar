@@ -24,6 +24,12 @@ class Product(models.Model):
     def __str__(self) -> str:
         return self.title
 
+class Weight(models.Model):
+    title = models.CharField(max_length=255)
+    product = models.ForeignKey(Product, on_delete=models.PROTECT, null=True)
+
+    def __str__(self) -> str:
+        return self.title
 
 class Customer(models.Model):
     first_name = models.CharField(max_length=255)
