@@ -1,35 +1,35 @@
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, render
 from rest_framework.decorators import api_view
+from rest_framework import status
 from rest_framework.response import Response
-from store.models import Category, Product
+from rest_framework.viewsets import ModelViewSet
+from store.models import Category, OrderItem, Product
+
 
 from store.serializers import CategorySerializer, ProductSerializer
 
 # Create your views here.
-@api_view()
-def product_list(request):
-    queryset = Product.objects.select_related('category').all()
-    serializer = ProductSerializer(queryset, many = True, context={'request':request})
-    return Response(serializer.data)
+
+class ProductViewSet(ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+    def get_serializer_context(self):
+        return {'request':self.request}
+    
+
+    def destroy(self, request, *args, **kwargs):
+        if OrderItem.objects.filter(product_id=kwargs['pk']).count() > 0:
+            return Response({'error': 'Product cannot be deleted with order.'})
+        return super().destroy(request, *args, **kwargs)
 
 
-@api_view()
-def product_detail(request, id):
-    product = get_object_or_404(Product, pk=id)
-    serializer = ProductSerializer(product)
-    return Response(serializer.data)
-
-
-
-
-@api_view()
-def category_list(request):
+class CategoryViewSet(ModelViewSet):
     queryset = Category.objects.annotate(products_count=Count('products')).all()
-    serializer = CategorySerializer(queryset, many = True)
-    return Response(serializer.data)
+    serializer_class = CategorySerializer
 
-
-@api_view()
-def category_detail(request, pk):
-    return Response('OK')
+    def destroy(self, request, *args, **kwargs):
+        if Product.objects.filter(category_id=kwargs['pk']).count() > 0:
+            return Response({'error': 'category cannot be deleted with products.'})
+        return super().destroy(request, *args, **kwargs)

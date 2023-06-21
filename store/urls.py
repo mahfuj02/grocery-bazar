@@ -1,12 +1,15 @@
 from django.contrib import admin
 from django.urls import include, path
+from rest_framework.routers import DefaultRouter
 
 from store import views
 
+router = DefaultRouter()
+
+router.register('products', views.ProductViewSet)
+router.register('categories', views.CategoryViewSet)
+
 urlpatterns = [
-    path('products/', views.product_list ),
-    path('product/<id>/', views.product_detail ),
-    path('categories/', views.category_list, name='category'),
-    path('category/<pk>/', views.category_detail, name='category-detail'),
+    path('', include(router.urls) ),
 ]
 
