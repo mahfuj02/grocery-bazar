@@ -1,3 +1,4 @@
+from django.db.models import Count
 from django.shortcuts import get_object_or_404, render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -24,8 +25,8 @@ def product_detail(request, id):
 
 @api_view()
 def category_list(request):
-    queryset = Category.objects.all()
-    serializer = CategorySerializer(queryset, many = True, context={'request':request})
+    queryset = Category.objects.annotate(products_count=Count('products')).all()
+    serializer = CategorySerializer(queryset, many = True)
     return Response(serializer.data)
 
 

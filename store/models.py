@@ -25,7 +25,7 @@ class Product(models.Model):
     weight = models.CharField(max_length=255, null=True)
     inventory = models.IntegerField()
     last_update = models.DateTimeField(auto_now=True)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='products')
     promotions = models.ManyToManyField(Promotion, related_name='products', blank=True)
 
     
