@@ -2,6 +2,10 @@ from django.db import models
 
 # Create your models here.
 
+from django.db import models
+
+# Create your models here.
+
 
 class Category(models.Model):
     title = models.CharField(max_length=255)
@@ -21,7 +25,7 @@ class Product(models.Model):
     weight = models.CharField(max_length=255, null=True)
     inventory = models.IntegerField()
     last_update = models.DateTimeField(auto_now=True)
-    categories = models.ManyToManyField(Category, related_name='products')
+    category = models.ForeignKey(Category, on_delete=models.PROTECT)
     promotions = models.ManyToManyField(Promotion, related_name='products', blank=True)
 
     
