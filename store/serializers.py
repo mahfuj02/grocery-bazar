@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from store.models import Category, Product
+from store.models import Category, Product, Review
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -14,9 +14,10 @@ class ProductSerializer (serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
-    # id = serializers.IntegerField()
-    # title = serializers.CharField(max_length=256)
-    # unit_price = serializers.IntegerField()
-    # description = serializers.CharField()
     category = serializers.HyperlinkedRelatedField( queryset = Category.objects.all(), view_name='category-detail')
-    # weight = serializers.CharField()
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = ['id', 'date', 'name', 'description', 'product']
