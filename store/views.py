@@ -3,10 +3,10 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter, OrderingFilter
-from store.models import Category, OrderItem, Product, Review
 
-
-from store.serializers import CategorySerializer, ProductSerializer, ReviewSerializer
+from .models import Category, OrderItem, Product, Review
+from .pagination import DefaultPagination
+from .serializers import CategorySerializer, ProductSerializer, ReviewSerializer
 
 # Create your views here.
 
@@ -15,6 +15,7 @@ class ProductViewSet(ModelViewSet):
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = ['category_id']
+    pagination_class = DefaultPagination
     search_fields = [ 'title', 'description']
     ordering_fields = ['title', 'unit_price']
      
