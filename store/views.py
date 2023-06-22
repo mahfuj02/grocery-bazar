@@ -1,10 +1,8 @@
 from django.db.models import Count
-from django.shortcuts import get_object_or_404, render
-from rest_framework.decorators import api_view
-from rest_framework import status
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.filters import SearchFilter
 from store.models import Category, OrderItem, Product, Review
 
 
@@ -15,8 +13,10 @@ from store.serializers import CategorySerializer, ProductSerializer, ReviewSeria
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ['category_id']
+    search_fields = [ 'title', 'description']
+     
 
 
 
