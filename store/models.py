@@ -1,11 +1,7 @@
 from django.db import models
+from uuid import uuid4
 
 # Create your models here.
-
-from django.db import models
-
-# Create your models here.
-
 
 class Category(models.Model):
     title = models.CharField(max_length=255)
@@ -78,13 +74,17 @@ class OrderItem(models.Model):
 
 
 class Cart(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid4)
     created_at = models.DateTimeField(auto_now_add=True)
 
 
 class CartItem(models.Model):
-    cart = models.ForeignKey(Cart, models.CASCADE)
+    cart = models.ForeignKey(Cart, models.CASCADE, related_name='items')
     product = models.ForeignKey(Product, models.CASCADE)
     quantity = models.PositiveSmallIntegerField()
+
+    class Meta:
+        unique_together = [['cart', 'product']]
 
 
 class Review(models.Model):
