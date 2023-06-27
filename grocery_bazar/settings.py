@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django_filters',
 
     'store',
-    'tags'
+    'tags',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = 'core.User'
