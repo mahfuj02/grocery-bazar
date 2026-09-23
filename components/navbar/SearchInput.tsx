@@ -8,10 +8,25 @@ import {
   InputRightAddon,
   Show
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 const SearchBox = () => {
+  const router = useRouter();
+  const [search, setSearch] = useState(() =>
+    typeof router.query.search === "string" ? router.query.search : ""
+  );
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const query = { ...router.query };
+    if (search.trim()) query.search = search.trim();
+    else delete query.search;
+    router.push({ pathname: "/", query }, undefined, { shallow: true });
+  };
+
   return (
-    <form onSubmit={() => {}}>
+    <form onSubmit={handleSubmit}>
       <InputGroup border="1px solid #37B063" borderRadius="6px" size="lg">
         <InputLeftAddon bg="background" border="none">
           <Show below="lg">
@@ -37,6 +52,8 @@ const SearchBox = () => {
           border="none"
           placeholder="Search your products from here"
           _placeholder={{ color: "gray.500", fontSize: "14px" }}
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
         />
         <InputRightAddon bg="background" border="none">
           <Box

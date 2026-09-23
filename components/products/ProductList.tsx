@@ -13,20 +13,22 @@ const ProductList = () => {
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const products = productData(data?.products);
   const selectedCategory = typeof router.query.category === "string" ? router.query.category : "";
+  const searchTerm = typeof router.query.search === "string" ? router.query.search.toLowerCase() : "";
   const filteredProducts = products?.filter((product) => {
-    if (!selectedCategory) return true;
-    const category = selectedCategory.toLowerCase();
-    return product.categories.some((value) => {
+    const matchesCategory = !selectedCategory || product.categories.some((value) => {
+      const category = selectedCategory.toLowerCase();
       const productCategory = value.toLowerCase();
       return productCategory.includes(category) || category.includes(productCategory);
     });
+    const searchableText = `${product.product_name} ${product.description || ""} ${product.categories.join(" ")}`.toLowerCase();
+    return matchesCategory && (!searchTerm || searchableText.includes(searchTerm));
   });
   const [visibleCount, setVisibleCount] = useState(20);
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setVisibleCount(20);
-  }, [selectedCategory]);
+  }, [selectedCategory, searchTerm]);
 
   useEffect(() => {
     const element = loadMoreRef.current;
@@ -67,7 +69,7 @@ const ProductList = () => {
         </Link>
       ))}
       {!isLoading && filteredProducts?.length === 0 && (
-        <Text gridColumn="1 / -1">No products found in this category.</Text>
+        <Text gridColumn="1 / -1">No products found for this search.</Text>
       )}
       </SimpleGrid>
       {!isLoading && visibleProducts.length < (filteredProducts?.length || 0) && (
