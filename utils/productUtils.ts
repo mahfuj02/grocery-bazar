@@ -8,9 +8,9 @@ const productData = (data: Product[] | undefined) => {
       ...product,
       _id: product._id ?? index,
       image_url: product.image_url || "",
-      price: Math.floor(Math.random() * (1000 - 10 + 1)) + 10,
+      price: product.price ?? Math.floor(Math.random() * (1000 - 10 + 1)) + 10,
       slug: convertSlug(product.product_name),
-      weight: ["100mg", "500mg", "1kg"],
+      weight: product.weight?.length ? product.weight : ["100mg", "500mg", "1kg"],
     }));
 };
 
