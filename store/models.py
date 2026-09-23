@@ -19,6 +19,7 @@ class Product(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     slug = models.SlugField(default='-')
+    image_url = models.URLField(blank=True)
     unit_price = models.IntegerField()
     weight = models.CharField(max_length=255, null=True)
     inventory = models.IntegerField()
