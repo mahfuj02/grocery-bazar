@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { Product } from "@/utils/Product";
+import { fallbackProducts } from "@/utils/catalog";
 
 interface ApiResponse {
   count?: number;
@@ -45,12 +46,16 @@ class APIClient<T> {
       .then((res) => ({
         products: (res.data.results || res.data.products || []).map((product) => normalizeProduct(product as Product)),
         count: res.data.count || 0,
-      }));
+      }))
+      .catch(() => ({ products: fallbackProducts, count: fallbackProducts.length }));
   };
   get = (id: string) => {
     return axiosInstance
       .get<ProductFetchResponse<T>>(this.endpoint + "/" + id)
-      .then((res) => ({ product: normalizeProduct((res.data.product || res.data) as Product) }));
+      .then((res) => ({ product: normalizeProduct((res.data.product || res.data) as Product) }))
+      .catch(() => ({
+        product: fallbackProducts.find((product) => product._id === Number(id)),
+      }));
   };
   getCategories = (config: AxiosRequestConfig) => {
     return axiosInstance
