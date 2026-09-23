@@ -2,13 +2,16 @@ import { Product } from "./Product";
 import { convertSlug } from "./helper";
 
 const productData = (data: Product[] | undefined) => {
-    data?.forEach((product) => {
-    const randomPrice = Math.floor(Math.random() * (1000 - 10 + 1)) + 10;
-    product.price = randomPrice;
-    product.slug = convertSlug(product.product_name);
-    product.weight = ["100mg", "500mg", "1kg"];
-  });
-  return data;
+  return data
+    ?.filter((product) => typeof product.product_name === "string" && product.product_name.trim().length > 0)
+    .map((product, index) => ({
+      ...product,
+      _id: product._id ?? index,
+      image_url: product.image_url || "",
+      price: Math.floor(Math.random() * (1000 - 10 + 1)) + 10,
+      slug: convertSlug(product.product_name),
+      weight: ["100mg", "500mg", "1kg"],
+    }));
 };
 
 export default productData

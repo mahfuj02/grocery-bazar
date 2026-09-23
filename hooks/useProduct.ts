@@ -4,12 +4,13 @@ import { useQuery } from "react-query";
 
 
 
-const useProduct = (id: string  ) => {
+const useProduct = (id: string | undefined) => {
 
-    const apiClient = new APIClient<Product>(`/api/v0/product`);
+    const apiClient = new APIClient<Product>(`/products`);
     return useQuery({
     queryKey: ["product", id],
-    queryFn: () => apiClient.get(id),
+  queryFn: () => apiClient.get(id as string),
+  enabled: Boolean(id),
   });
 
 };

@@ -1,25 +1,36 @@
 import axios, { AxiosRequestConfig } from "axios";
+import { Product } from "@/utils/Product";
 
 interface ApiResponse {
-  count: number;
+  count?: number;
 }
 
-interface ProductResponse<T> extends ApiResponse{
-  products: T[]
+interface ProductResponse<T> {
+  count?: number;
+  results?: T[];
+  products?: T[];
 }
 
 interface CategoryResponse<T> extends ApiResponse{
   tags: T[]
 }
 
-interface ProductFetchResponse<T> {
-  code: number;
-  product: T;
-}
+interface ProductFetchResponse<T> { product?: T; id?: number; title?: string; }
 
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api/backend";
 
 export const axiosInstance = axios.create({
-  baseURL: "https://world.openfoodfacts.org",
+  baseURL: apiBaseUrl,
+});
+
+const normalizeProduct = (product: Product & { id?: number; title?: string; unit_price?: number }) => ({
+  _id: product._id ?? product.id ?? 0,
+  product_name: product.product_name || product.title || "Unnamed product",
+  categories: product.categories || [],
+  image_url: product.image_url || "",
+  price: product.price ?? product.unit_price ?? 0,
+  slug: product.slug || "-",
+  weight: Array.isArray(product.weight) ? product.weight : [product.weight || "1 item"],
 });
 
 class APIClient<T> {
@@ -31,12 +42,15 @@ class APIClient<T> {
   getAll = (config: AxiosRequestConfig) => {
     return axiosInstance
       .get<ProductResponse<T>>(this.endpoint, config)
-      .then((res) => res.data);
+      .then((res) => ({
+        products: (res.data.results || res.data.products || []).map((product) => normalizeProduct(product as Product)),
+        count: res.data.count || 0,
+      }));
   };
   get = (id: string) => {
     return axiosInstance
       .get<ProductFetchResponse<T>>(this.endpoint + "/" + id)
-      .then((res) => res.data);
+      .then((res) => ({ product: normalizeProduct((res.data.product || res.data) as Product) }));
   };
   getCategories = (config: AxiosRequestConfig) => {
     return axiosInstance

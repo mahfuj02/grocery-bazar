@@ -1,25 +1,17 @@
 import ImageGallery from "@/components/product_detail/ImageGallery";
 import ProductInfo from "@/components/product_detail/ProductInfo";
 import useProduct from "@/hooks/useProduct";
-// import { products } from "@/components/products/ProductList";
-import { convertSlug } from "@/utils/helper";
-import { Box, SimpleGrid, Spinner } from "@chakra-ui/react";
+import { Box, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import { NextPageContext } from "next";
 import { useRouter } from "next/router";
-import { title } from "process";
 
 const ProductDetailPage = () => {
   const router = useRouter();
   const id = router.query.id as string;
-  console.log("id is a string: ", id);
   const { data, error, isLoading } = useProduct(id);
   const product = data?.product;
-  if(product === undefined) return null;
-  // const product = products.find(
-  //   (product) => convertSlug(product.) === productSlug
-  // );
   if (isLoading) return <Spinner />;
-  if (error) null;
+  if (error || !product) return <Text>Unable to load this product.</Text>;
   return (
     <Box
       bg="mainPageBG"
