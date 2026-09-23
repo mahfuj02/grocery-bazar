@@ -1,6 +1,6 @@
 import useProducts from "@/hooks/useProducts";
 import { Link } from "@chakra-ui/next-js";
-import { Button, Center, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Button, Center, SimpleGrid, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import ProductCard from "./ProductCard";
@@ -49,7 +49,8 @@ const ProductList = () => {
   }
 
   return (
-    <SimpleGrid columns={{ base: 2, md: 3 }} spacing={{ base: 1, md: 4 }}>
+    <Box>
+      <SimpleGrid columns={{ base: 2, md: 3 }} spacing={{ base: 1, md: 4 }}>
       {isLoading &&
         skeletons.map((skeleton) => (
           <ProdcutCardSkeleton key={skeleton}></ProdcutCardSkeleton>
@@ -68,15 +69,16 @@ const ProductList = () => {
       {!isLoading && filteredProducts?.length === 0 && (
         <Text gridColumn="1 / -1">No products found in this category.</Text>
       )}
+      </SimpleGrid>
       {!isLoading && visibleProducts.length < (filteredProducts?.length || 0) && (
-        <Center gridColumn="1 / -1" py={6}>
+        <Center py={6}>
           <Button colorScheme="green" onClick={() => setVisibleCount((count) => count + 20)}>
             Load more products
           </Button>
         </Center>
       )}
-      <div ref={loadMoreRef} aria-hidden="true" />
-    </SimpleGrid>
+      <Box ref={loadMoreRef} height="1px" aria-hidden="true" />
+    </Box>
   );
 };
 

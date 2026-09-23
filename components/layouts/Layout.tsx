@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { useRouter } from "next/router";
 import Navbar from "../navbar/Navbar";
 import BaseLayout from "./BaseLayout";
 import ProductDetailLayout from "./ProductDetailLayout";
@@ -9,10 +10,13 @@ interface Props {
 }
 
 const Layout = ({ pageName, children }: Props) => {
+  const router = useRouter();
+  const isProductDetail = pageName === "productDetailPage" || router.pathname.startsWith("/product/");
+
   return (
     <>
       <Navbar />
-      {pageName === "productDetailPage" ? (
+      {isProductDetail ? (
         <ProductDetailLayout>{children}</ProductDetailLayout>
       ) : (
         <BaseLayout> {children} </BaseLayout>
