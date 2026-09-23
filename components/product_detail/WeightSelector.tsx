@@ -14,7 +14,7 @@ interface Props {
 }
 
 const WeightSelector = ({ weight }: Props) => {
-  const [selectedOption, setSelectedOption] = useState("1 kg");
+  const [selectedOption, setSelectedOption] = useState(weight[0] || "1 item");
 
   return (
     <Menu>

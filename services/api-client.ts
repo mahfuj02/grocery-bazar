@@ -24,7 +24,7 @@ export const axiosInstance = axios.create({
   baseURL: apiBaseUrl,
 });
 
-const normalizeProduct = (product: Product & { id?: number; title?: string; unit_price?: number }) => ({
+const normalizeProduct = (product: Product & { id?: number; title?: string; unit_price?: number; category?: string; category_name?: string; inventory?: number; description?: string }) => ({
   _id: product._id ?? product.id ?? 0,
   product_name: product.product_name || product.title || "Unnamed product",
   categories: product.categories || [],
@@ -32,6 +32,9 @@ const normalizeProduct = (product: Product & { id?: number; title?: string; unit
   price: product.price ?? product.unit_price ?? 0,
   slug: product.slug || "-",
   weight: Array.isArray(product.weight) ? product.weight : [product.weight || "1 item"],
+  description: product.description || "Quality grocery product from Grocery Bazar.",
+  category: product.category_name || product.category || "Grocery",
+  inventory: product.inventory ?? 0,
 });
 
 class APIClient<T> {

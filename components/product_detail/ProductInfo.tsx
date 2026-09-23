@@ -2,9 +2,9 @@ import { Product } from "@/utils/Product";
 import {
   Box,
   Grid,
-  Text
+  Text,
+  Badge,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import CartButton from "../carts/CartButton";
 import WeightSelector from "./WeightSelector";
 
@@ -13,14 +13,6 @@ interface Props {
 }
 
 const ProductInfo = ({ product }: Props) => {
-  const randomPrice = Math.floor(Math.random() * (1000 - 10 + 1)) + 10;
-  const newProduct = {
-    ...product,
-    price: randomPrice,
-    weight: ["100mg", "500mg", "1kg"],
-  };
-  const [selectedOption, setSelectedOption] = useState("1 kg");
-
   return (
     <Grid bg="white" templateRows="repeat(3, auto)" gap={2} p={10}>
       {/* First Row */}
@@ -29,7 +21,7 @@ const ProductInfo = ({ product }: Props) => {
         gap={2}
       >
         {/* Left side: Title */}
-        <Text fontWeight="bold">{newProduct?.product_name}</Text>
+        <Text fontWeight="bold" fontSize="xl">{product.product_name}</Text>
 
         {/* Right side: Price */}
         <Text
@@ -39,21 +31,24 @@ const ProductInfo = ({ product }: Props) => {
           fontSize="16px"
           fontWeight={700}
         >
-          tk.{newProduct?.price}
+          tk.{product.price}
         </Text>
       </Grid>
 
       {/* Second Row */}
       <Grid templateColumns={{ base: "1fr", lg: "1fr 1fr" }} gap={2}>
         <Box width={{ base: "100%" }}>
-          <WeightSelector weight={newProduct.weight} />
+          <WeightSelector weight={product.weight} />
         </Box>
         <Box width={{ base: "50%", lg: "100%" }}>
-          <CartButton name={newProduct?.product_name} price={newProduct.price} id={newProduct?._id} />
+          <CartButton name={product.product_name} price={product.price} id={product._id} />
         </Box>
       </Grid>
 
       <Grid templateColumns="1fr" gap={2}>
+        <Badge width="fit-content" colorScheme="green">{product.category || "Grocery"}</Badge>
+        <Text color="gray.600">{product.description}</Text>
+        <Text fontWeight="bold">Available: {product.inventory ?? "In stock"}</Text>
         <Text fontWeight="bold">Supplier: Grocery Bazar</Text>
       </Grid>
     </Grid>
