@@ -27,7 +27,7 @@ export const axiosInstance = axios.create({
 const normalizeProduct = (product: Product & { id?: number; title?: string; unit_price?: number; category?: string; category_name?: string; inventory?: number; description?: string }) => ({
   _id: product._id ?? product.id ?? 0,
   product_name: product.product_name || product.title || "Unnamed product",
-  categories: product.categories || [],
+  categories: product.categories?.length ? product.categories : [product.category_name || product.category || "Grocery"],
   image_url: product.image_url || "",
   price: product.price ?? product.unit_price ?? 0,
   slug: product.slug || "-",

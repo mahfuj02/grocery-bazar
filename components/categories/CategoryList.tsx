@@ -1,5 +1,6 @@
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Box, Button, Flex, Icon, Image } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import baby_care from "../../public/Baby_Care_aYWku2D.webp";
 import grocery from "../../public/Grocery_yO9ZydW.webp";
@@ -13,9 +14,10 @@ interface Category {
 interface SidebarItemProps {
   category: Category;
   level: number;
+  onSelect: (title: string) => void;
 }
 
-const SidebarItem = ({ category, level }: SidebarItemProps) => {
+const SidebarItem = ({ category, level, onSelect }: SidebarItemProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
@@ -32,7 +34,10 @@ const SidebarItem = ({ category, level }: SidebarItemProps) => {
         variant="link"
         display="flex"
         alignItems="center"
-        onClick={handleToggle}
+        onClick={() => {
+          onSelect(category.title);
+          if (category.children) handleToggle();
+        }}
         textColor="black"
         marginY={3}
         fontWeight={500}
@@ -61,7 +66,7 @@ const SidebarItem = ({ category, level }: SidebarItemProps) => {
       {isExpanded && category.children && (
         <Box pl={marginLeft}>
           {category.children.map((child) => (
-            <SidebarItem key={child.title} category={child} level={level + 1} />
+            <SidebarItem key={child.title} category={child} level={level + 1} onSelect={onSelect} />
           ))}
         </Box>
       )}
@@ -70,6 +75,10 @@ const SidebarItem = ({ category, level }: SidebarItemProps) => {
 };
 
 const CategoryList: React.FC = () => {
+  const router = useRouter();
+  const handleSelect = (title: string) => {
+    router.push({ pathname: "/", query: { category: title } }, undefined, { shallow: true });
+  };
   const groceryUrl = grocery.src;
   const babyCareUrl = baby_care.src;
   const categories: Category[] = [
@@ -169,7 +178,7 @@ const CategoryList: React.FC = () => {
   return (
     <Box marginTop={5} marginLeft={5}>
       {categories.map((category, index) => (
-        <SidebarItem key={index} category={category} level={0} />
+        <SidebarItem key={index} category={category} level={0} onSelect={handleSelect} />
       ))}
     </Box>
   );
