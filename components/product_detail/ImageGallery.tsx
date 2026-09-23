@@ -18,6 +18,7 @@ const ImageGallery = ({ image, title }: Props) => {
     setCursorPosition({ x: event.clientX, y: event.clientY });
 
   };
+  const fallbackImage = `https://loremflickr.com/800/800/${encodeURIComponent(title || "grocery product")},food`;
 
   return (
     <Box
@@ -52,6 +53,10 @@ const ImageGallery = ({ image, title }: Props) => {
       <Image
         src={image}
         alt={title}
+        onError={(event) => {
+          event.currentTarget.onerror = null;
+          event.currentTarget.src = fallbackImage;
+        }}
       
       />
     </Box>

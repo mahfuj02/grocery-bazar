@@ -7,6 +7,8 @@ interface Props {
 }
 
 const ProductCard = ({ product }: Props) => {
+  const fallbackImage = `https://loremflickr.com/600/600/${encodeURIComponent(product.product_name)},food`;
+
   // if(!product)return;
   return (
     <Box bg="white" padding={2} maxW="sm" borderRadius="md" overflow="hidden">
@@ -16,6 +18,10 @@ const ProductCard = ({ product }: Props) => {
           alt={product?.product_name}
           objectFit="cover"
           h={200}
+          onError={(event) => {
+            event.currentTarget.onerror = null;
+            event.currentTarget.src = fallbackImage;
+          }}
         />
       </Box>
 
