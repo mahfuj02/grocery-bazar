@@ -4,17 +4,36 @@ from django.utils.text import slugify
 from store.models import Category, Product
 
 
+CATEGORY_PRODUCTS = {
+    "Fresh Fruits": ["Banana", "Red Apple", "Mango", "Orange", "Papaya", "Pineapple", "Watermelon", "Grapes", "Guava", "Lemon"],
+    "Fresh Vegetables": ["Tomato", "Carrot", "Potato", "Onion", "Broccoli", "Cauliflower", "Cucumber", "Spinach", "Green Beans", "Bell Pepper"],
+    "Dairy": ["Fresh Milk", "Farm Eggs", "Butter", "Cheddar Cheese", "Yogurt", "Cream", "Paneer", "Mozzarella", "Sour Cream", "Chocolate Milk"],
+    "Meat and Fish": ["Chicken Breast", "Whole Chicken", "Beef Steak", "Ground Beef", "Mutton Curry Cut", "Salmon Fillet", "Tilapia Fish", "Prawns", "Chicken Wings", "Beef Kebabs"],
+    "Pantry": ["Basmati Rice", "Red Lentils", "Brown Rice", "Chickpeas", "All Purpose Flour", "Whole Wheat Flour", "Sugar", "Salt", "Cooking Oil", "Tea Leaves"],
+    "Beverages": ["Orange Juice", "Apple Juice", "Mineral Water", "Cola", "Lemon Soda", "Green Tea", "Coffee", "Mango Drink", "Coconut Water", "Iced Tea"],
+    "Snacks": ["Potato Chips", "Tortilla Chips", "Popcorn", "Chocolate Bar", "Granola Bar", "Cookies", "Crackers", "Mixed Nuts", "Trail Mix", "Pretzels"],
+    "Bakery": ["White Bread", "Whole Wheat Bread", "Croissant", "Burger Buns", "Dinner Rolls", "Chocolate Cake", "Donuts", "Muffins", "Pita Bread", "Garlic Bread"],
+    "Frozen Foods": ["Frozen Peas", "Frozen Corn", "French Fries", "Chicken Nuggets", "Fish Fingers", "Frozen Pizza", "Mixed Vegetables", "Ice Cream", "Frozen Paratha", "Frozen Berries"],
+    "Household": ["Dish Soap", "Laundry Detergent", "Paper Towels", "Toilet Paper", "Trash Bags", "Kitchen Sponges", "Glass Cleaner", "Floor Cleaner", "Aluminum Foil", "Food Storage Bags"],
+}
+
+IMAGE_URLS = {
+    "Fresh Fruits": "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=600&q=80",
+    "Fresh Vegetables": "https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=600&q=80",
+    "Dairy": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&q=80",
+    "Meat and Fish": "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=600&q=80",
+    "Pantry": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&q=80",
+    "Beverages": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=600&q=80",
+    "Snacks": "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=600&q=80",
+    "Bakery": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80",
+    "Frozen Foods": "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?w=600&q=80",
+    "Household": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=600&q=80",
+}
+
 PRODUCTS = [
-    ("Fresh Fruits", "Banana", "Fresh bananas", 120, "1 kg", "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=600&q=80"),
-    ("Fresh Fruits", "Red Apple", "Crisp red apples", 280, "1 kg", "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=600&q=80"),
-    ("Fresh Vegetables", "Tomato", "Ripe tomatoes", 160, "1 kg", "https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=600&q=80"),
-    ("Fresh Vegetables", "Carrot", "Fresh carrots", 140, "1 kg", "https://images.unsplash.com/photo-1445282768818-728615cc910a?w=600&q=80"),
-    ("Dairy", "Fresh Milk", "Full cream milk", 95, "1 litre", "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&q=80"),
-    ("Dairy", "Farm Eggs", "Free-range eggs", 180, "12 pieces", "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=600&q=80"),
-    ("Pantry", "Basmati Rice", "Long grain basmati rice", 420, "5 kg", "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&q=80"),
-    ("Pantry", "Red Lentils", "Premium red lentils", 220, "1 kg", "https://images.unsplash.com/photo-1515543904379-3d757afe72e4?w=600&q=80"),
-    ("Beverages", "Orange Juice", "Refreshing orange juice", 190, "1 litre", "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=600&q=80"),
-    ("Snacks", "Potato Chips", "Crispy salted potato chips", 90, "150 g", "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=600&q=80"),
+    (category, title, f"Quality {title.lower()} for your home.", 80 + index * 17, "1 item", IMAGE_URLS[category])
+    for category, titles in CATEGORY_PRODUCTS.items()
+    for index, title in enumerate(titles, start=1)
 ]
 
 

@@ -12,9 +12,11 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer (serializers.ModelSerializer):
+    category_name = serializers.CharField(source='category.title', read_only=True)
+
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ['id', 'title', 'description', 'slug', 'image_url', 'unit_price', 'weight', 'inventory', 'last_update', 'category', 'category_name', 'promotions']
     category = serializers.HyperlinkedRelatedField(
         queryset=Category.objects.all(), view_name='category-detail')
 
