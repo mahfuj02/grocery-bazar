@@ -31,7 +31,7 @@ IMAGE_URLS = {
 }
 
 PRODUCTS = [
-    (category, title, f"Quality {title.lower()} for your home.", 80 + index * 17, "1 item", IMAGE_URLS[category])
+    (category, title, f"Quality {title.lower()} for your home.", 80 + index * 17, "1 item", f"https://loremflickr.com/600/600/{slugify(title)},food")
     for category, titles in CATEGORY_PRODUCTS.items()
     for index, title in enumerate(titles, start=1)
 ]
