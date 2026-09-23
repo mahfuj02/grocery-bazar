@@ -13,6 +13,8 @@ const Layout = ({ pageName, children }: Props) => {
   const router = useRouter();
   const isProductDetail = pageName === "productDetailPage" || router.pathname.startsWith("/product/");
 
+  if (router.pathname === "/maintenance") return <>{children}</>;
+
   return (
     <>
       <Navbar />
